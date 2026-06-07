@@ -303,6 +303,204 @@
             border-color: var(--black);
         }
 
+        /* ── HIGHLIGHT SLIDE ── */
+        #highlight-slide {
+            background: #f9f9f9;
+            padding: 60px 40px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            max-width: 880px;
+            margin: 0 auto;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .slide-item {
+            position: relative;
+            flex: 1;
+            cursor: pointer;
+            transition: transform .3s;
+        }
+
+        .slide-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .slide-item img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all .3s;
+            border-radius: 4px;
+        }
+
+        .slide-item:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .slide-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--gray3);
+            margin-top: 12px;
+        }
+
+        .slide-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--black);
+            margin-top: 4px;
+        }
+
+        .slide-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--black);
+            color: var(--white);
+            padding: 6px 12px;
+            font-size: 9px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        /* ── PROJECTS MODAL ── */
+        #projectModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        #projectModal.open {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .project-modal-content {
+            position: relative;
+            background: var(--white);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            border-radius: 8px;
+            overflow-y: auto;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform .4s cubic-bezier(.22, 1, .36, 1), opacity .4s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        #projectModal.open .project-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .project-modal-header {
+            display: flex;
+            gap: 24px;
+            padding: 32px;
+            border-bottom: 1px solid var(--gray5);
+        }
+
+        .project-modal-img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 4px;
+            filter: grayscale(100%);
+            opacity: 0.85;
+        }
+
+        .project-modal-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-modal-idx {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--gray3);
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .project-modal-title {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -.02em;
+            margin-bottom: 4px;
+        }
+
+        .project-modal-subtitle {
+            font-size: 14px;
+            color: var(--gray3);
+            margin-bottom: 16px;
+        }
+
+        .project-modal-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .project-modal-body {
+            padding: 0 32px 32px;
+        }
+
+        .project-modal-desc {
+            font-size: 14px;
+            color: var(--gray2);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .project-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gray5);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all .2s;
+            color: var(--black);
+        }
+
+        .project-modal-close:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
         /* ── PROJECTS ── */
         .proj-item {
             border-top: 1px solid var(--gray5);
@@ -437,6 +635,58 @@
         .proj-gallery-item:hover {
             opacity: 1;
             filter: grayscale(0%);
+        }
+
+        .proj-carousel {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .carousel-img {
+            width: 240px;
+            height: 180px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            opacity: .85;
+            background: var(--gray5);
+            transition: opacity .3s, filter .3s;
+        }
+
+        .carousel-img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        .carousel-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .carousel-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--gray4);
+            background: var(--white);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all .2s;
+            color: var(--gray2);
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--black);
+            background: var(--gray5);
+        }
+
+        .carousel-btn.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
         }
 
         .proj-text {
@@ -778,7 +1028,7 @@
 
         #modalImage {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 20%;
             object-fit: contain;
         }
 
@@ -1035,6 +1285,28 @@
         </div>
     </section>
 
+    <!-- HIGHLIGHT SLIDE -->
+    <section id="highlight-slide">
+        <div class="slide-container">
+            <div class="slide-item" onclick="openAwardModal('file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg')">
+                <div style="position: relative;">
+                    <img src="file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg" alt="데이터분석 은상">
+                    <div class="slide-badge">Award</div>
+                </div>
+                <div class="slide-label">Achievement</div>
+                <div class="slide-title">AI Data Analysis Award</div>
+            </div>
+            <div class="slide-item" onclick="openProjectModal(3)">
+                <div style="position: relative;">
+                    <img src="file/Web/images/bbac (1).jpg" alt="BBAC Project">
+                    <div class="slide-badge">Project</div>
+                </div>
+                <div class="slide-label">Featured Work</div>
+                <div class="slide-title">BBAC Physics Game</div>
+            </div>
+        </div>
+    </section>
+
     <!-- PROJECTS -->
     <section id="projects">
         <div class="sec-label reveal">Section 01</div>
@@ -1043,6 +1315,33 @@
 
         <div id="proj-list"></div>
     </section>
+
+    <!-- PROJECT MODAL -->
+    <div id="projectModal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal()">✕</button>
+            <div class="project-modal-header">
+                <div id="modal-proj-img-container">
+                    <img id="modal-proj-img" class="project-modal-img" src="" alt="Project">
+                </div>
+                <div class="project-modal-info">
+                    <div class="project-modal-idx" id="modal-proj-idx"></div>
+                    <div class="project-modal-title" id="modal-proj-title"></div>
+                    <div class="project-modal-subtitle" id="modal-proj-subtitle"></div>
+                    <div class="project-modal-tags" id="modal-proj-tags"></div>
+                </div>
+            </div>
+            <div class="project-modal-body">
+                <p class="project-modal-desc" id="modal-proj-desc"></p>
+                <a id="modal-proj-link" class="proj-link" href="" target="_blank">
+                    Visit Site
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.4" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- TIMELINE -->
     <section class="full" id="timeline-sec">
@@ -1119,8 +1418,8 @@
             },
             {
                 idx: "03", title: "DFS / BFS Visualizer", subtitle: "Algorithm Visualization Tool",
-                desc: "깊이 우선 탐색과 너비 우선 탐색 알고리즘을 실시간으로 시각화하는 학습 도구. 그래프 직접 편집 및 탐색 속도 조절 기능을 제공합니다.",
-                tags: ["Algorithm", "Visualization", "React"],
+                desc: "깊이 우선 탐색과 너비 우선 탐색 알고리즘을 실시간으로 시각화하는 학습 도구. 순수 JavaScript로 그래프 직접 편집 및 탐색 속도 조절 기능을 구현했습니다.",
+                tags: ["JavaScript", "Algorithm", "Visualization"],
                 url: "http://dfsbfstest2.kro.kr",
                 img: "https://github.com/leeprefer10272/portfoilio/blob/main/dfsbfstest2.png?raw=true"
             },
@@ -1181,55 +1480,124 @@
 
         /* ── RENDER PROJECTS ── */
         const pl = document.getElementById('proj-list');
+        const carousels = {};
+
         PROJECTS.forEach((p, i) => {
             const el = document.createElement('div');
             el.className = 'proj-item reveal' + (i ? ' reveal-delay-' + Math.min(i, 3) : '');
 
-            const imgHtml = p.images
-                ? `<div class="proj-gallery">${p.images.map(img => `<img class="proj-gallery-item" src="${img}" alt="${p.title}" loading="lazy">`).join('')}</div>`
-                : `<img class="proj-img" src="${p.img}" alt="${p.title}" loading="lazy">`;
-
             el.innerHTML = `
-    <div class="proj-header" onclick="toggleProj(${i}, this)">
+    <div class="proj-header" onclick="openProjectModal(${i})">
       <div class="proj-idx">${p.idx}</div>
       <div class="proj-info">
         <div class="proj-title">${p.title}</div>
         <div class="proj-subtitle">${p.subtitle}</div>
         <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
       </div>
-      <div class="proj-toggle" id="toggle-${i}">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 0v12M0 6h12" stroke="#a8a8a8" stroke-width="1.5"/></svg>
-      </div>
-    </div>
-    <div class="proj-body" id="body-${i}">
-      <div class="proj-inner">
-        ${imgHtml}
-        <div class="proj-text">
-          <p class="proj-desc">${p.desc}</p>
-          <a class="proj-link" href="${p.url}" target="_blank" onclick="event.stopPropagation()">
-            Visit Site
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.4"/></svg>
-          </a>
-        </div>
+      <div class="proj-toggle">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 6h4M6 4v4" stroke="#a8a8a8" stroke-width="1.5"/></svg>
       </div>
     </div>`;
             pl.appendChild(el);
         });
 
-        const openProj = new Set();
-        function toggleProj(i, header) {
-            const body = document.getElementById('body-' + i);
-            const tog = document.getElementById('toggle-' + i);
-            const svg = tog.querySelector('path');
-            if (openProj.has(i)) {
-                openProj.delete(i);
-                body.classList.remove('open');
-                tog.style.transform = 'rotate(0deg)';
+        function openProjectModal(projIdx) {
+            const p = PROJECTS[projIdx];
+            if (!p) return;
+
+            // 모달 내용 설정
+            document.getElementById('modal-proj-idx').textContent = p.idx;
+            document.getElementById('modal-proj-title').textContent = p.title;
+            document.getElementById('modal-proj-subtitle').textContent = p.subtitle;
+            document.getElementById('modal-proj-desc').textContent = p.desc;
+            document.getElementById('modal-proj-link').href = p.url;
+
+            // 태그 설정
+            const tagsHtml = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+            document.getElementById('modal-proj-tags').innerHTML = tagsHtml;
+
+            // 이미지 컨테이너 업데이트
+            const imgContainer = document.getElementById('modal-proj-img-container');
+            if (p.images && p.title === 'BBAC') {
+                // BBAC 캐러셀
+                imgContainer.innerHTML = `
+                    <div class="proj-carousel">
+                        <img id="carousel-img-${projIdx}" class="carousel-img" src="${p.images[0]}" alt="${p.title}" loading="lazy">
+                        <div class="carousel-buttons">
+                            ${p.images.map((_, idx) => `<button class="carousel-btn${idx === 0 ? ' active' : ''}" data-carousel="${projIdx}" onclick="setCarouselImage(${projIdx}, ${idx})">${idx + 1}</button>`).join('')}
+                        </div>
+                    </div>`;
+                if (!carousels[projIdx]) {
+                    carousels[projIdx] = { images: p.images, currentIndex: 0, autoInterval: null, manualTimeout: null };
+                }
+                startCarouselAuto(projIdx);
             } else {
-                openProj.add(i);
-                body.classList.add('open');
-                tog.style.transform = 'rotate(45deg)';
+                // 일반 이미지
+                const imgSrc = p.images ? p.images[0] : p.img;
+                imgContainer.innerHTML = `<img id="modal-proj-img" class="project-modal-img" src="${imgSrc}" alt="${p.title}" loading="lazy">`;
             }
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('open');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('open');
+            // 모든 캐러셀 정지
+            Object.keys(carousels).forEach(key => {
+                clearInterval(carousels[key].autoInterval);
+                clearTimeout(carousels[key].manualTimeout);
+            });
+        }
+
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target.id === 'projectModal') closeProjectModal();
+        });
+
+        // 프로젝트 모달 ESC 키 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('projectModal');
+                if (modal.classList.contains('open')) closeProjectModal();
+            }
+        });
+
+        function setCarouselImage(projIdx, imgIdx) {
+            const carousel = carousels[projIdx];
+            if (!carousel) return;
+
+            carousel.currentIndex = imgIdx;
+            const img = document.getElementById(`carousel-img-${projIdx}`);
+            if (img) img.src = carousel.images[imgIdx];
+
+            // 버튼 상태 업데이트
+            document.querySelectorAll(`[data-carousel="${projIdx}"]`).forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === imgIdx);
+            });
+
+            // 수동 클릭 시 5초 유지
+            clearTimeout(carousel.manualTimeout);
+            clearInterval(carousel.autoInterval);
+            carousel.manualTimeout = setTimeout(() => {
+                startCarouselAuto(projIdx);
+            }, 5000);
+        }
+
+        function startCarouselAuto(projIdx) {
+            const carousel = carousels[projIdx];
+            if (!carousel) return;
+
+            clearInterval(carousel.autoInterval);
+            carousel.autoInterval = setInterval(() => {
+                carousel.currentIndex = (carousel.currentIndex + 1) % carousel.images.length;
+                const img = document.getElementById(`carousel-img-${projIdx}`);
+                if (img) img.src = carousel.images[carousel.currentIndex];
+
+                document.querySelectorAll(`[data-carousel="${projIdx}"]`).forEach((btn, idx) => {
+                    btn.classList.toggle('active', idx === carousel.currentIndex);
+                });
+            }, 1500);
         }
 
         /* ── RENDER TIMELINE ── */
@@ -1326,6 +1694,19 @@
 
         document.getElementById('awardModal').addEventListener('click', (e) => {
             if (e.target.id === 'awardModal') closeAwardModal();
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('awardModal');
+                if (modal.classList.contains('open')) closeAwardModal();
+            }
+        });
+
+        // 새로고침 시 맨 위로 이동
+        window.addEventListener('beforeunload', () => {
+            window.scrollTo(0, 0);
         });
 
         /* ── INTERSECTION OBSERVER ── */
