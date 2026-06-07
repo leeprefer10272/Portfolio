@@ -303,75 +303,6 @@
             border-color: var(--black);
         }
 
-        /* ── HIGHLIGHT SLIDE ── */
-        #highlight-slide {
-            background: #f9f9f9;
-            padding: 60px 40px;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .slide-container {
-            max-width: 880px;
-            margin: 0 auto;
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .slide-item {
-            position: relative;
-            flex: 1;
-            cursor: pointer;
-            transition: transform .3s;
-        }
-
-        .slide-item:hover {
-            transform: translateY(-4px);
-        }
-
-        .slide-item img {
-            width: 100%;
-            height: auto;
-            filter: grayscale(100%);
-            opacity: 0.8;
-            transition: all .3s;
-            border-radius: 4px;
-        }
-
-        .slide-item:hover img {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-
-        .slide-label {
-            font-family: var(--mono);
-            font-size: 9px;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            color: var(--gray3);
-            margin-top: 12px;
-        }
-
-        .slide-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--black);
-            margin-top: 4px;
-        }
-
-        .slide-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--black);
-            color: var(--white);
-            padding: 6px 12px;
-            font-size: 9px;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-
         /* ── PROJECTS MODAL ── */
         #projectModal {
             position: fixed;
@@ -1028,7 +959,7 @@
 
         #modalImage {
             max-width: 100%;
-            max-height: 20%;
+            max-height: 120px;
             object-fit: contain;
         }
 
@@ -1285,28 +1216,6 @@
         </div>
     </section>
 
-    <!-- HIGHLIGHT SLIDE -->
-    <section id="highlight-slide">
-        <div class="slide-container">
-            <div class="slide-item" onclick="openAwardModal('file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg')">
-                <div style="position: relative;">
-                    <img src="file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg" alt="데이터분석 은상">
-                    <div class="slide-badge">Award</div>
-                </div>
-                <div class="slide-label">Achievement</div>
-                <div class="slide-title">AI Data Analysis Award</div>
-            </div>
-            <div class="slide-item" onclick="openProjectModal(3)">
-                <div style="position: relative;">
-                    <img src="file/Web/images/bbac (1).jpg" alt="BBAC Project">
-                    <div class="slide-badge">Project</div>
-                </div>
-                <div class="slide-label">Featured Work</div>
-                <div class="slide-title">BBAC Physics Game</div>
-            </div>
-        </div>
-    </section>
-
     <!-- PROJECTS -->
     <section id="projects">
         <div class="sec-label reveal">Section 01</div>
@@ -1544,10 +1453,11 @@
         function closeProjectModal() {
             const modal = document.getElementById('projectModal');
             modal.classList.remove('open');
-            // 모든 캐러셀 정지
+            // 모든 캐러셀 정지 및 상태 초기화
             Object.keys(carousels).forEach(key => {
                 clearInterval(carousels[key].autoInterval);
                 clearTimeout(carousels[key].manualTimeout);
+                carousels[key].currentIndex = 0; // 상태 초기화
             });
         }
 
