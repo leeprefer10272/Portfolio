@@ -1432,7 +1432,7 @@
                 // BBAC 캐러셀
                 imgContainer.innerHTML = `
                     <div class="proj-carousel">
-                        <img id="carousel-img-${projIdx}" class="carousel-img" src="${p.images[0]}" alt="${p.title}" loading="lazy">
+                        <img id="carousel-img-${projIdx}" class="carousel-img" src="${p.images[0]}" alt="${p.title}" loading="lazy" style="filter: saturate(1.2) brightness(1.02);">
                         <div class="carousel-buttons">
                             ${p.images.map((_, idx) => `<button class="carousel-btn${idx === 0 ? ' active' : ''}" data-carousel="${projIdx}" onclick="setCarouselImage(${projIdx}, ${idx})">${idx + 1}</button>`).join('')}
                         </div>
@@ -1612,7 +1612,12 @@
 
         function closeAwardModal() {
             const modal = document.getElementById('awardModal');
+            const img = document.getElementById('modalImage');
             modal.classList.remove('open');
+            // 모달 닫을 때 이미지 초기화
+            setTimeout(() => {
+                img.src = '';
+            }, 300);
         }
 
         document.getElementById('awardModal').addEventListener('click', (e) => {
