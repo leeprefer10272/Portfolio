@@ -686,6 +686,77 @@
             border-bottom: 1px solid var(--gray4);
         }
 
+        .award-img-btn {
+            margin-left: auto;
+            background: none;
+            border: 1px solid var(--gray4);
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 3px;
+            transition: all .2s;
+            flex-shrink: 0;
+        }
+
+        .award-img-btn:hover {
+            border-color: var(--black);
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* ── MODAL ── */
+        #awardModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #awardModal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        #modalImage {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .2s;
+        }
+
+        .modal-close:hover {
+            opacity: 0.7;
+        }
+
         .award-date {
             font-family: var(--mono);
             font-size: 11px;
@@ -948,6 +1019,14 @@
         </div>
     </section>
 
+    <!-- AWARD MODAL -->
+    <div id="awardModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAwardModal()">✕</button>
+            <img id="modalImage" src="" alt="Award Image">
+        </div>
+    </div>
+
     <!-- GITHUB -->
     <section id="github-sec" style="padding:100px 40px">
         <div class="gh-inner reveal">
@@ -1011,7 +1090,7 @@
         ];
 
         const AWARDS = [
-            { title: "인공지능 데이터분석 청소년부 은상", org: "한국정보기술진흥원", date: "2025.09.25", type: "상장" },
+            { title: "인공지능 데이터분석 청소년부 은상", org: "한국정보기술진흥원", date: "2025.09.25", type: "상장", image: "file/Web/images/3d게임.png" },
             { title: "북부수학영재 6학년 수료증", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료증" },
             { title: "DIAT GOLD MASTER", org: "한국정보통신진흥협회", date: "2024.09.30", type: "자격증" },
             { title: "코딩창의개발능력 · 스크래치", org: "창의융합인재교육원", date: "2024.08.21", type: "자격증" },
@@ -1147,8 +1226,25 @@
     <span class="award-date">${a.date}</span>
     <span class="award-badge">${a.type}</span>
     <span class="award-title">${a.title}</span>
-    <span class="award-org">${a.org}</span>`;
+    <span class="award-org">${a.org}</span>
+    ${a.image ? `<button class="award-img-btn" onclick="openAwardModal('${a.image}')" title="이미지 보기">📷</button>` : ''}`;
             al.appendChild(div);
+        });
+
+        function openAwardModal(imageSrc) {
+            const modal = document.getElementById('awardModal');
+            const img = document.getElementById('modalImage');
+            img.src = imageSrc;
+            modal.classList.add('open');
+        }
+
+        function closeAwardModal() {
+            const modal = document.getElementById('awardModal');
+            modal.classList.remove('open');
+        }
+
+        document.getElementById('awardModal').addEventListener('click', (e) => {
+            if (e.target.id === 'awardModal') closeAwardModal();
         });
 
         /* ── INTERSECTION OBSERVER ── */
