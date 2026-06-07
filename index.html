@@ -358,8 +358,8 @@
             object-fit: cover;
             flex-shrink: 0;
             border-radius: 4px;
-            filter: grayscale(100%);
-            opacity: 0.85;
+            filter: none;
+            opacity: 1;
         }
 
         .project-modal-info {
@@ -540,8 +540,8 @@
             height: 130px;
             object-fit: cover;
             flex-shrink: 0;
-            filter: grayscale(100%);
-            opacity: .75;
+            filter: none;
+            opacity: 1;
             background: var(--gray5);
         }
 
@@ -556,8 +556,8 @@
             height: 80px;
             object-fit: cover;
             flex-shrink: 0;
-            filter: grayscale(100%);
-            opacity: .75;
+            filter: none;
+            opacity: 1;
             background: var(--gray5);
             cursor: pointer;
             transition: opacity .2s, filter .2s;
@@ -959,8 +959,9 @@
 
         #modalImage {
             max-width: 100%;
-            max-height: 120px;
+            max-height: 600px;
             object-fit: contain;
+            filter: saturate(1.1);
         }
 
         .modal-close {
@@ -1460,6 +1461,18 @@
                 carousels[key].currentIndex = 0; // 상태 초기화
             });
         }
+
+        // 페이지 로드시 맨 위로 스크롤
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            setTimeout(() => window.scrollTo(0, 0), 100);
+        });
+        if (document.readyState !== 'loading') {
+            window.scrollTo(0, 0);
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
+        });
 
         document.getElementById('projectModal').addEventListener('click', (e) => {
             if (e.target.id === 'projectModal') closeProjectModal();
