@@ -738,7 +738,6 @@
 
         /* ── MODAL ── */
         #awardModal {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -749,16 +748,28 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s cubic-bezier(.22, 1, .36, 1);
         }
 
         #awardModal.open {
-            display: flex;
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .modal-content {
             position: relative;
             max-width: 90%;
             max-height: 90%;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform .4s cubic-bezier(.22, 1, .36, 1), opacity .4s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        #awardModal.open .modal-content {
+            transform: scale(1);
+            opacity: 1;
         }
 
         #modalImage {
@@ -1146,16 +1157,16 @@
         ];
 
         const AWARDS = [
-            { title: "인공지능 데이터분석 청소년부 은상", org: "한국정보기술진흥원", date: "2025.09.25", type: "상장", image: "file/Web/images/3d게임.png" },
-            { title: "북부수학영재 6학년 수료증", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료증", image: null },
+            { title: "인공지능 데이터분석 청소년부 은상", org: "한국정보기술진흥원", date: "2025.09.25", type: "상장", image: "file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg" },
+            { title: "북부수학영재 6학년 수료증", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료증", image: "file/Credentials/images/부산광역시북부영재교육원_수학.jpg" },
             { title: "DIAT GOLD MASTER", org: "한국정보통신진흥협회", date: "2024.09.30", type: "자격증", image: null },
             { title: "코딩창의개발능력 · 스크래치", org: "창의융합인재교육원", date: "2024.08.21", type: "자격증", image: null },
-            { title: "제57회 과학의 날 상장", org: "과학기술정보통신부", date: "2024.04.22", type: "상장", image: null },
-            { title: "북부수학영재 5학년 수료증", org: "부산광역시북부영재교육원", date: "2024.01.10", type: "수료증", image: null },
-            { title: "부산수학문화관 체험수학캠프", org: "부산광역시교육청창의융합교육원", date: "2023.08.24", type: "수료증", image: null },
-            { title: "로봇발명반", org: "부산광역시북부교육지원청교육장", date: "2022.12.14", type: "이수증", image: null },
-            { title: "대학부설 과학영재교육원 선교육과정", org: "대학부설 과학영재교육원", date: "2022.08.13", type: "이수증", image: null },
-            { title: "초등발명초급과정", org: "부산광역시북부교육지원청교육장", date: "2022.07.11", type: "이수증", image: null }
+            { title: "제57회 과학의 날 상장", org: "과학기술정보통신부", date: "2024.04.22", type: "상장", image: "file/Credentials/images/제57회과학의날.jpg" },
+            { title: "북부수학영재 5학년 수료증", org: "부산광역시북부영재교육원", date: "2024.01.10", type: "수료증", image: "file/Credentials/images/부산광역시북부영재교육원수학.jpg" },
+            { title: "부산수학문화관 체험수학캠프", org: "부산광역시교육청창의융합교육원", date: "2023.08.24", type: "수료증", image: "file/Credentials/images/부산수학문화관_체험수학캠프.jpg" },
+            { title: "로봇발명반", org: "부산광역시북부교육지원청교육장", date: "2022.12.14", type: "이수증", image: "file/Credentials/images/부산광역시북부교육지원청교육장_로봇발명반.jpg" },
+            { title: "대학부설 과학영재교육원 선교육과정", org: "대학부설 과학영재교육원", date: "2022.08.13", type: "이수증", image: "file/Credentials/images/대학부설_과학영재교육원장협의회.jpg" },
+            { title: "초등발명초급과정", org: "부산광역시북부교육지원청교육장", date: "2022.07.11", type: "이수증", image: "file/Credentials/images/부산광역시북부교육지원청교육장_초등발명초급과정.jpg" }
         ];
 
         function goTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
@@ -1299,7 +1310,9 @@
             const modal = document.getElementById('awardModal');
             const img = document.getElementById('modalImage');
             img.src = imageSrc;
-            modal.classList.add('open');
+            requestAnimationFrame(() => {
+                modal.classList.add('open');
+            });
         }
 
         function closeAwardModal() {
