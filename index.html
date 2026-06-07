@@ -303,6 +303,102 @@
             border-color: var(--black);
         }
 
+        /* ── SHOWCASE ── */
+        #showcase {
+            padding: 80px 40px 100px;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+
+        .showcase-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .showcase-card {
+            background: var(--white);
+            border: 1px solid var(--gray5);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all .4s cubic-bezier(.22, 1, .36, 1);
+            cursor: pointer;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gray4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .showcase-img-container {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background: var(--gray5);
+        }
+
+        .showcase-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.1);
+            transition: transform .4s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .showcase-card:hover .showcase-img {
+            transform: scale(1.05);
+        }
+
+        .showcase-content {
+            padding: 24px;
+        }
+
+        .showcase-badge {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--gray3);
+            margin-bottom: 8px;
+        }
+
+        .showcase-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .showcase-desc {
+            font-size: 12px;
+            color: var(--gray2);
+            line-height: 1.6;
+        }
+
+        .showcase-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .showcase-item {
+            font-size: 11px;
+            color: var(--gray1);
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .showcase-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--black);
+            font-weight: bold;
+        }
+
         /* ── PROJECTS MODAL ── */
         #projectModal {
             position: fixed;
@@ -1186,7 +1282,6 @@
             <a onclick="goTo('timeline-sec')">Timeline</a>
             <a onclick="goTo('skills-sec')">Skills</a>
             <a onclick="goTo('awards-sec')">Awards</a>
-            <a onclick="goTo('github-sec')">GitHub</a>
         </div>
     </nav>
 
@@ -1210,16 +1305,82 @@
                 <div class="stat-l">Streak</div>
             </div>
         </div>
-        <p class="hero-desc">Android · Web · Creative Coding · Game Dev.<br>카카오 루키 캠프 지원을 위한 포트폴리오입니다.</p>
+        <p class="hero-desc">Android · Web · Creative Coding · Game Dev.<br>이선호의 포트폴리오입니다</p>
         <div class="btn-row">
             <button class="btn btn-dark" onclick="goTo('projects')">View Work ↓</button>
             <button class="btn btn-light" onclick="goTo('awards-sec')">Awards</button>
         </div>
     </section>
 
+    <!-- SHOWCASE -->
+    <section id="showcase">
+        <div style="max-width: 1120px; margin: 0 auto 40px;">
+            <div class="sec-label reveal">Section 01</div>
+            <div class="h-main reveal reveal-delay-1">Highlights</div>
+            <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0"></div>
+        </div>
+        <div class="showcase-grid">
+            <!-- Award Card -->
+            <div class="showcase-card reveal">
+                <div class="showcase-img-container">
+                    <img src="file/enterprise/images/KITPA.png" alt="AI Data Analysis Award" class="showcase-img">
+                </div>
+                <div class="showcase-content">
+                    <div class="showcase-badge">Award</div>
+                    <div class="showcase-title">AI Data Analysis</div>
+                    <div class="showcase-desc">♔ Silver Award</div>
+                    <div class="showcase-items">
+                        <div class="showcase-item">정보기술진툵협회(KITPA)</div>
+                        <div class="showcase-item">2025.09.25</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card -->
+            <div class="showcase-card reveal reveal-delay-1">
+                <div class="showcase-img-container">
+                    <img src="file/Web/images/bbac (1).jpg" alt="BBAC Physics Game" class="showcase-img">
+                </div>
+                <div class="showcase-content">
+                    <div class="showcase-badge">Web Game</div>
+                    <div class="showcase-title">BBAC</div>
+                    <div class="showcase-desc">2D Physics & Platformer</div>
+                    <div class="showcase-items">
+                        <div class="showcase-item">Vanilla JS · Canvas API</div>
+                        <div class="showcase-item"><a href="http://bbac.kro.kr" target="_blank"
+                                style="color: var(--gray2); text-decoration: underline; cursor: pointer;">bbac.kro.kr</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement Card -->
+            <div class="showcase-card reveal reveal-delay-2">
+                <div class="showcase-img-container"
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; color: white;">
+                        <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;">🏆</div>
+                        <div style="font-size: 12px; letter-spacing: .1em;">ACHIEVEMENTS</div>
+                    </div>
+                </div>
+                <div class="showcase-content">
+                    <div class="showcase-badge">Milestones</div>
+                    <div class="showcase-title">Excellence Path</div>
+                    <div class="showcase-desc">Talented Math & CS</div>
+                    <div class="showcase-items">
+                        <div class="showcase-item">5차모 수학영재 - 수료증</div>
+                        <div class="showcase-item">6차모 수학영재 - 수료증</div>
+                        <div class="showcase-item">2학년 정보영재 드 예정</div>
+                        <div class="showcase-item">3학년 정보영재 예정</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PROJECTS -->
     <section id="projects">
-        <div class="sec-label reveal">Section 01</div>
+        <div class="sec-label reveal">Section 02</div>
         <div class="h-main reveal reveal-delay-1">Featured</div>
         <div class="h-sub reveal reveal-delay-2" style="margin-bottom:40px">Projects</div>
 
@@ -1256,7 +1417,7 @@
     <!-- TIMELINE -->
     <section class="full" id="timeline-sec">
         <div class="section-wrap">
-            <div class="sec-label reveal">Section 02</div>
+            <div class="sec-label reveal">Section 03</div>
             <div class="h-main reveal reveal-delay-1" style="color:#fff">Project</div>
             <div class="h-sub reveal reveal-delay-2" style="color:#2a2a2a">Timeline</div>
             <p class="reveal reveal-delay-3">2025.10 — 2026.05 &nbsp;·&nbsp; 총 <strong id="tl-total">38</strong>개 프로젝트
@@ -1267,7 +1428,7 @@
 
     <!-- SKILLS -->
     <section id="skills-sec">
-        <div class="sec-label reveal">Section 03</div>
+        <div class="sec-label reveal">Section 04</div>
         <div class="h-main reveal reveal-delay-1">Technical</div>
         <div class="h-sub reveal reveal-delay-2" style="margin-bottom:48px">Skills</div>
         <div class="skills-grid" id="skills-grid"></div>
@@ -1276,7 +1437,7 @@
     <!-- AWARDS -->
     <section class="full" id="awards-sec">
         <div class="section-wrap">
-            <div class="sec-label reveal">Section 04</div>
+            <div class="sec-label reveal">Section 05</div>
             <div class="h-main reveal reveal-delay-1">Awards &</div>
             <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0">Certificates</div>
             <div class="award-summary reveal reveal-delay-3" id="award-summary"></div>
@@ -1291,19 +1452,6 @@
             <img id="modalImage" src="" alt="Award Image">
         </div>
     </div>
-
-    <!-- GITHUB -->
-    <section id="github-sec" style="padding:100px 40px">
-        <div class="gh-inner reveal">
-            <div class="gh-left">
-                <div class="sec-label">Section 05</div>
-                <div class="gh-title">More on<br>GitHub.</div>
-                <p class="gh-desc">소스 코드, 실험 프로젝트, 그리고 앞으로의 작업들을 GitHub에서 확인할 수 있습니다.</p>
-                <a href="https://github.com/" target="_blank" class="btn btn-dark">Visit GitHub ↗</a>
-            </div>
-            <div class="gh-big">GH</div>
-        </div>
-    </section>
 
     <footer>
         <span class="ft-l">© 2026 이선호 · Lee Seonho</span>
