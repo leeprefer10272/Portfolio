@@ -536,9 +536,10 @@
         }
 
         .project-modal-img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            object-fit: contain;
             flex-shrink: 0;
             border-radius: 4px;
             filter: none;
@@ -546,8 +547,10 @@
         }
 
         .project-modal-placeholder {
-            width: 300px;
-            height: 200px;
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            max-width: 600px;
             display: grid;
             place-items: center;
             flex-shrink: 0;
@@ -773,18 +776,18 @@
         }
 
         .carousel-img {
-            width: 240px;
-            height: 180px;
-            object-fit: cover;
-            filter: grayscale(100%);
-            opacity: .85;
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            object-fit: contain;
+            opacity: 1;
             background: var(--gray5);
-            transition: opacity .3s, filter .3s;
+            transition: opacity .3s;
+            border-radius: 4px;
         }
 
         .carousel-img:hover {
             opacity: 1;
-            filter: grayscale(0%);
         }
 
         .carousel-buttons {
@@ -814,6 +817,13 @@
             background: var(--black);
             color: var(--white);
             border-color: var(--black);
+        }
+
+        .carousel-media {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            border-radius: 4px;
         }
 
         .proj-text {
@@ -1417,7 +1427,7 @@
         .showcase-grid { perspective: 1000px; }
         .showcase-card { border-radius: 0; border-color: var(--gray3); background: var(--white); transform: translate3d(0,0,0) rotate(var(--card-tilt, 0deg)); transition: transform .35s, box-shadow .35s; }
         .showcase-card:hover { transform: translate3d(0,-12px,25px) rotate(var(--card-tilt, 0deg)); box-shadow: 14px 18px 0 var(--gray3); }
-        .showcase-img { filter: grayscale(100%) contrast(1.3); }
+        .showcase-img { filter: none; }
         .marquee { overflow: hidden; border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 12px 0; white-space: nowrap; background: var(--black); color: var(--white); font: 12px var(--mono); letter-spacing: .2em; }
         .marquee-track { display: inline-block; animation: marquee 22s linear infinite; }
         @keyframes marquee { to { transform: translateX(-50%); } }
@@ -1868,7 +1878,8 @@
                     "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 산출물 닫힘.jpg",
                     "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 산출물 열림.jpg",
                     "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 개발 카메라.jpg",
-                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 팜플렛.jpg"
+                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 팜플렛.jpg",
+                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 시연영상.mp4"
                 ]
             }
         ];
@@ -1968,11 +1979,17 @@
 
             // 이미지 컨테이너 업데이트
             const imgContainer = document.getElementById('modal-proj-img-container');
-            if (p.images && p.title === 'BBAC') {
-                // BBAC 캐러셀
+            if (p.images && (p.title === 'BBAC' || p.title === '카카오 AI 루키캠프 2기')) {
+                // BBAC 및 카카오 루키캠프 캐러셀
+                const currentImg = p.images[0];
+                const isVideo = currentImg.endsWith('.mp4');
+                const imgHtml = isVideo 
+                    ? `<video id="carousel-img-${projIdx}" class="carousel-media" controls loading="lazy" style="width:100%; height:auto;"><source src="${currentImg}" type="video/mp4"></video>`
+                    : `<img id="carousel-img-${projIdx}" class="carousel-img" src="${currentImg}" alt="${p.title}" loading="lazy" ${p.title === 'BBAC' ? 'style="filter: saturate(1.2) brightness(1.02);"' : ''}>`;
+                
                 imgContainer.innerHTML = `
                     <div class="proj-carousel">
-                        <img id="carousel-img-${projIdx}" class="carousel-img" src="${p.images[0]}" alt="${p.title}" loading="lazy" style="filter: saturate(1.2) brightness(1.02);">
+                        ${imgHtml}
                         <div class="carousel-buttons">
                             ${p.images.map((_, idx) => `<button class="carousel-btn${idx === 0 ? ' active' : ''}" data-carousel="${projIdx}" onclick="setCarouselImage(${projIdx}, ${idx})">${idx + 1}</button>`).join('')}
                         </div>
@@ -1980,7 +1997,9 @@
                 if (!carousels[projIdx]) {
                     carousels[projIdx] = { images: p.images, currentIndex: 0, autoInterval: null, manualTimeout: null };
                 }
-                startCarouselAuto(projIdx);
+                if (p.title === 'BBAC') {
+                    startCarouselAuto(projIdx);
+                }
             } else {
                 // 일반 이미지
                 const imgSrc = p.images ? p.images[0] : p.img;
@@ -1992,6 +2011,8 @@
             const modal = document.getElementById('projectModal');
             modal.classList.add('open');
         }
+
+
 
         function closeProjectModal() {
             const modal = document.getElementById('projectModal');
@@ -2033,20 +2054,39 @@
             if (!carousel) return;
 
             carousel.currentIndex = imgIdx;
-            const img = document.getElementById(`carousel-img-${projIdx}`);
-            if (img) img.src = carousel.images[imgIdx];
+            const media = document.getElementById(`carousel-img-${projIdx}`);
+            const imgPath = carousel.images[imgIdx];
+            
+            if (media) {
+                if (imgPath.endsWith('.mp4')) {
+                    // 동영상인 경우
+                    if (media.tagName === 'VIDEO') {
+                        media.src = imgPath;
+                    } else {
+                        // 이미지에서 동영상으로 변경
+                        const carousel_container = media.parentElement;
+                        carousel_container.innerHTML = `<video id="carousel-img-${projIdx}" class="carousel-media" controls loading="lazy" style="width:100%; height:auto;"><source src="${imgPath}" type="video/mp4"></video>`;
+                    }
+                } else {
+                    // 이미지인 경우
+                    if (media.tagName === 'VIDEO') {
+                        // 동영상에서 이미지로 변경
+                        const carousel_container = media.parentElement;
+                        carousel_container.innerHTML = `<img id="carousel-img-${projIdx}" class="carousel-img" src="${imgPath}" alt="Image" loading="lazy">`;
+                    } else {
+                        media.src = imgPath;
+                    }
+                }
+            }
 
             // 버튼 상태 업데이트
             document.querySelectorAll(`[data-carousel="${projIdx}"]`).forEach((btn, idx) => {
                 btn.classList.toggle('active', idx === imgIdx);
             });
 
-            // 수동 클릭 시 5초 유지
+            // 수동 클릭 시 5초 유지 (자동 재생 해제)
             clearTimeout(carousel.manualTimeout);
             clearInterval(carousel.autoInterval);
-            carousel.manualTimeout = setTimeout(() => {
-                startCarouselAuto(projIdx);
-            }, 5000);
         }
 
         function startCarouselAuto(projIdx) {
@@ -2056,8 +2096,28 @@
             clearInterval(carousel.autoInterval);
             carousel.autoInterval = setInterval(() => {
                 carousel.currentIndex = (carousel.currentIndex + 1) % carousel.images.length;
-                const img = document.getElementById(`carousel-img-${projIdx}`);
-                if (img) img.src = carousel.images[carousel.currentIndex];
+                const media = document.getElementById(`carousel-img-${projIdx}`);
+                const imgPath = carousel.images[carousel.currentIndex];
+                
+                if (media) {
+                    if (imgPath.endsWith('.mp4')) {
+                        // 동영상인 경우
+                        if (media.tagName === 'VIDEO') {
+                            media.src = imgPath;
+                        } else {
+                            const carousel_container = media.parentElement;
+                            carousel_container.innerHTML = `<video id="carousel-img-${projIdx}" class="carousel-media" controls loading="lazy" style="width:100%; height:auto;"><source src="${imgPath}" type="video/mp4"></video>`;
+                        }
+                    } else {
+                        // 이미지인 경우
+                        if (media.tagName === 'VIDEO') {
+                            const carousel_container = media.parentElement;
+                            carousel_container.innerHTML = `<img id="carousel-img-${projIdx}" class="carousel-img" src="${imgPath}" alt="Image" loading="lazy">`;
+                        } else {
+                            media.src = imgPath;
+                        }
+                    }
+                }
 
                 document.querySelectorAll(`[data-carousel="${projIdx}"]`).forEach((btn, idx) => {
                     btn.classList.toggle('active', idx === carousel.currentIndex);
