@@ -1503,7 +1503,7 @@
     </div>
     <div class="progress"><span id="progressBar"></span></div>
     <nav>
-        <div class="nav-logo" onclick="scrollTo(0,0)">LSH</div>
+        <div class="nav-logo" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">LSH</div>
         <div class="nav-links">
             <a onclick="goTo('projects')">작업</a>
             <a onclick="goTo('timeline-sec')">활동 기록</a>
@@ -1638,7 +1638,7 @@
             <!-- Kakao AI Rookie Camp Card -->
             <div class="showcase-card reveal reveal-delay-2">
                 <div class="showcase-img-container"
-                    style="background: var(--black); display: flex; align-items: center; justify-content: center;">
+                    style="background: var(--white); display: flex; align-items: center; justify-content: center;">
                     <img class="showcase-img" src="file/file/Web/images/kakao_ai_rookie_camp_logo.png"
                         alt="카카오 AI 루키캠프 로고" style="object-fit: contain;">
                 </div>
@@ -1907,7 +1907,7 @@
             { title: "카카오 AI 루키캠프 2기 수료", org: "카카오 AI 루키캠프", date: "2026.08.11 — 2026.08.14", type: "수료", image: "file/file/Credentials/images/카카오루키캠프2기 수료증.png" },
             { title: "인공지능 데이터분석 청소년부 은상", org: "한국정보기술진흥원", date: "2025.09.25", type: "상장", image: "file/file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg" },
             { title: "부산광역시 북부 영재교욱원 수학영역 6학년 수료", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원_수학.jpg" },
-            { title: "DIAT GOLD MASTER", org: "한국정보통신진흥협회", date: "2024.09.30", type: "자격증", image: "file/file/Credentials/images/DIAT GOLD MASTER 자격증.JPG" },
+            { title: "DIAT GOLD MASTER(MULTIMEDIA, PPTX, WORD, EXCEL, POWERPOINT)", org: "한국정보통신진흥협회", date: "2024.09.30", type: "자격증(5개)", count: 5, image: "file/file/Credentials/images/DIAT GOLD MASTER 자격증.JPG" },
             { title: "코딩창의개발능력 · 스크래치", org: "창의융합인재교육원", date: "2024.08.21", type: "자격증", image: "file/file/Credentials/images/코딩창의개발능력 합격증서.png" },
             { title: "제57회 과학의 날 상장", org: "과학기술정보통신부", date: "2024.04.22", type: "상장", image: "file/file/Credentials/images/제57회과학의날.jpg" },
             { title: "부산광역시 북부 영재교욱원 수학영역 5학년 수료", org: "부산광역시북부영재교육원", date: "2024.01.10", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원수학.jpg" },
@@ -2193,7 +2193,8 @@
         const types = ['상장', '자격증', '수료', '이수증'];
         const aSummary = document.getElementById('award-summary');
         types.forEach(t => {
-            const cnt = AWARDS.filter(a => a.type === t).length;
+            const cnt = AWARDS.filter(a => a.type === t || (t === '자격증' && a.type === '자격증(5개)'))
+                .reduce((sum, a) => sum + (a.count || 1), 0);
             aSummary.innerHTML += `<div><div class="award-sum-n">${cnt}</div><div class="award-sum-l">${t}</div></div>`;
         });
 
