@@ -1276,16 +1276,13 @@
 
         /* ── V/ VISUAL SYSTEM ── */
         :root { --black: #111; --ink: #252525; --gray1: #555; --gray2: #777; --gray3: #bdbdb9; --gray4: #d2d2ce; --gray5: #e9e9e6; --white: #f5f5f2; }
-        body { background: var(--white); color: var(--black); cursor: none; }
+        body { background: var(--white); color: var(--black); }
         body::before { content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .055; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"); }
         nav { background: rgba(17,17,17,.92); color: var(--white); border-color: #333; }
         .nav-links a, .nav-logo { color: var(--white); }
         .nav-links a:hover { color: var(--gray3); }
         .progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 150; background: transparent; }
         .progress span { display: block; height: 100%; width: 0; background: var(--gray3); transform-origin: left; }
-        .cursor { position: fixed; z-index: 300; width: 22px; height: 22px; border: 2px solid var(--white); outline: 1px solid var(--black); border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); transition: width .25s, height .25s, background .25s, border-color .25s; }
-        .cursor span { position: absolute; inset: 6px; background: var(--black); border: 1px solid var(--white); border-radius: 50%; }
-        .cursor.is-large { width: 58px; height: 58px; background: rgba(255,255,255,.35); border-color: var(--white); }
         .intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; overflow: hidden; background: var(--black); color: var(--white); animation: introOut .5s 1.8s cubic-bezier(.77,0,.18,1) forwards; }
         .intro-grid { position: absolute; inset: 0; opacity: .14; background: linear-gradient(90deg, transparent 49.9%, #fff 50%, transparent 50.1%), linear-gradient(0deg, transparent 49.9%, #fff 50%, transparent 50.1%); background-size: 80px 80px; }
         .intro::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(255,255,255,.08) 6px, transparent 7px); animation: scan 1.2s linear infinite; pointer-events: none; }
@@ -1348,7 +1345,6 @@
         .ft-l, .ft-r { color: #777; }
         @media (max-width: 700px) {
             body { cursor: auto; }
-            .cursor { display: none; }
             .intro-meta { inset: 20px; font-size: 8px; }
             .intro-meta span:last-child { display: none; }
             #hero { min-height: 780px; padding: 140px 20px 70px; }
@@ -1376,8 +1372,6 @@
         <div class="intro-meta"><span>LSH / 2026</span><span>INITIALIZING PORTFOLIO</span></div>
     </div>
     <div class="progress"><span id="progressBar"></span></div>
-    <div class="cursor" id="cursor"><span></span></div>
-
     <nav>
         <div class="nav-logo" onclick="scrollTo(0,0)">LSH</div>
         <div class="nav-links">
@@ -1547,10 +1541,10 @@
                     <div class="showcase-title">영재교육 수료</div>
                     <div class="showcase-desc">수학·정보영재 과정</div>
                     <div class="showcase-items">
-                        <div class="showcase-item">5학년 수학영재 수료</div>
-                        <div class="showcase-item">6학년 수학영재 수료</div>
-                        <div class="showcase-item">2학년 정보영재 수료 중</div>
-                        <div class="showcase-item">3학년 정보영재 수료예정</div>
+                        <div class="showcase-item">초등학교 5학년 수학영재 수료</div>
+                        <div class="showcase-item">초등학교 6학년 수학영재 수료</div>
+                        <div class="showcase-item">중학교 2학년 정보영재 수료 중</div>
+                        <div class="showcase-item">중학교 3학년 정보영재 수료예정</div>
                     </div>
                 </div>
             </div>
@@ -1670,7 +1664,6 @@
 
         const progressBar = document.getElementById('progressBar');
         const poster = document.querySelector('.hero-poster');
-        const cursor = document.getElementById('cursor');
         let lastScroll = window.scrollY;
         let lastTime = performance.now();
         let scrollSpeed = 0;
@@ -1687,14 +1680,6 @@
         };
         requestAnimationFrame(updateMotion);
 
-        window.addEventListener('mousemove', (event) => {
-            cursor.style.left = `${event.clientX}px`;
-            cursor.style.top = `${event.clientY}px`;
-        });
-        document.querySelectorAll('a, button, .showcase-card, .hero-poster, .proj-item').forEach((element) => {
-            element.addEventListener('mouseenter', () => cursor.classList.add('is-large'));
-            element.addEventListener('mouseleave', () => cursor.classList.remove('is-large'));
-        });
         document.querySelectorAll('.showcase-card').forEach((card, index) => {
             card.style.setProperty('--card-tilt', `${index % 2 ? 1 : -1}deg`);
             card.addEventListener('mousemove', (event) => {
