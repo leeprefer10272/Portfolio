@@ -316,6 +316,103 @@
             border-color: var(--black);
         }
 
+        .portfolio-overview {
+            max-width: 1120px;
+            margin: -24px auto 0;
+            padding: 0 40px 72px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .overview-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 18px;
+        }
+
+        .overview-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .overview-hint {
+            color: var(--gray2);
+            font-size: 12px;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .overview-card {
+            min-height: 112px;
+            padding: 18px;
+            border: 1px solid var(--gray4);
+            background: rgba(255, 255, 255, .8);
+            color: var(--black);
+            text-align: left;
+            cursor: pointer;
+            transition: transform .25s, background .25s, color .25s, border-color .25s;
+        }
+
+        .overview-card:hover,
+        .overview-card.active {
+            border-color: var(--black);
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-4px);
+        }
+
+        .overview-card-label {
+            display: block;
+            margin-bottom: 18px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .overview-card-count {
+            display: block;
+            font-family: var(--mono);
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .overview-filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .overview-filter {
+            padding: 8px 14px;
+            border: 1px solid var(--gray4);
+            background: transparent;
+            color: var(--gray2);
+            font-size: 11px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .overview-filter:hover,
+        .overview-filter.active {
+            border-color: var(--black);
+            background: var(--black);
+            color: var(--white);
+        }
+
+        body.filtering .portfolio-overview {
+            margin-bottom: 16px;
+        }
+
+        .category-section.is-filtered-out {
+            display: none;
+        }
+
         /* ── SHOWCASE ── */
         #showcase {
             padding: 80px 40px 100px;
@@ -1370,6 +1467,26 @@
             .process-grid { grid-template-columns: 1fr; gap: 0; margin-top: 50px; }
             .process-step { min-height: 160px; }
             section::before { font-size: 30vw; }
+            .portfolio-overview {
+                margin-top: 0;
+                padding: 0 20px 56px;
+            }
+            .overview-heading {
+                display: block;
+            }
+            .overview-hint {
+                display: block;
+                margin-top: 6px;
+            }
+            .overview-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) and (min-width: 701px) {
+            .overview-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -1429,6 +1546,42 @@
         </div>
     </section>
 
+    <section class="portfolio-overview" id="portfolio-overview" aria-labelledby="overview-title">
+        <div class="overview-heading">
+            <h2 class="overview-title" id="overview-title">포트폴리오 둘러보기</h2>
+            <span class="overview-hint">카테고리를 누르면 해당 내용만 볼 수 있습니다.</span>
+        </div>
+        <div class="overview-grid">
+            <button class="overview-card active" type="button" data-filter="all" onclick="filterPortfolio('all')">
+                <span class="overview-card-label">전체 보기</span>
+                <span class="overview-card-count">ALL</span>
+            </button>
+            <button class="overview-card" type="button" data-filter="showcase" onclick="filterPortfolio('showcase')">
+                <span class="overview-card-label">하이라이트</span>
+                <span class="overview-card-count" id="overview-showcase-count">6</span>
+            </button>
+            <button class="overview-card" type="button" data-filter="projects" onclick="filterPortfolio('projects')">
+                <span class="overview-card-label">대표 프로젝트</span>
+                <span class="overview-card-count" id="overview-projects-count">6</span>
+            </button>
+            <button class="overview-card" type="button" data-filter="timeline" onclick="filterPortfolio('timeline')">
+                <span class="overview-card-label">프로젝트 타임라인</span>
+                <span class="overview-card-count" id="overview-timeline-count">40</span>
+            </button>
+            <button class="overview-card" type="button" data-filter="awards" onclick="filterPortfolio('awards')">
+                <span class="overview-card-label">수상·자격</span>
+                <span class="overview-card-count" id="overview-awards-count">11</span>
+            </button>
+        </div>
+        <div class="overview-filter-row" aria-label="카테고리 필터">
+            <button class="overview-filter active" type="button" data-filter="all" onclick="filterPortfolio('all')">전체</button>
+            <button class="overview-filter" type="button" data-filter="showcase" onclick="filterPortfolio('showcase')">하이라이트만</button>
+            <button class="overview-filter" type="button" data-filter="projects" onclick="filterPortfolio('projects')">대표 프로젝트만</button>
+            <button class="overview-filter" type="button" data-filter="timeline" onclick="filterPortfolio('timeline')">타임라인만</button>
+            <button class="overview-filter" type="button" data-filter="awards" onclick="filterPortfolio('awards')">수상·자격만</button>
+        </div>
+    </section>
+
     <!-- SHOWCASE -->
     <div class="marquee" aria-hidden="true"><div class="marquee-track">MAKE IT WORK / MAKE IT CLEAR / MAKE IT STRANGE / &nbsp; MAKE IT WORK / MAKE IT CLEAR / MAKE IT STRANGE / &nbsp;</div></div>
 
@@ -1438,7 +1591,7 @@
         <p class="manifesto-copy reveal reveal-delay-2">좋은 인터랙션은 설명보다 먼저 도착합니다. 데이터를 읽고, 화면을 설계하고, 작은 실험을 반복하며 기술과 감각 사이의 빈틈을 만듭니다.</p>
     </section>
 
-    <section id="showcase" data-number="02">
+    <section id="showcase" class="category-section" data-category="showcase" data-number="02">
         <div style="max-width: 1120px; margin: 0 auto 40px;">
             <div class="sec-label reveal">Section 01</div>
             <div class="h-main reveal reveal-delay-1">Highlights</div>
@@ -1564,7 +1717,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" data-number="03">
+    <section id="projects" class="category-section" data-category="projects" data-number="03">
         <div class="sec-label reveal">Section 02</div>
         <div class="h-main reveal reveal-delay-1">Featured</div>
         <div class="h-sub reveal reveal-delay-2" style="margin-bottom:40px">Projects</div>
@@ -1600,7 +1753,7 @@
     </div>
 
     <!-- TIMELINE -->
-    <section class="full" id="timeline-sec" data-number="04">
+    <section class="full category-section" id="timeline-sec" data-category="timeline" data-number="04">
         <div class="section-wrap">
             <div class="sec-label reveal">Section 03</div>
             <div class="h-main reveal reveal-delay-1" style="color:#fff">Project</div>
@@ -1612,7 +1765,7 @@
     </section>
 
     <!-- AWARDS -->
-    <section class="full" id="awards-sec" data-number="05">
+    <section class="full category-section" id="awards-sec" data-category="awards" data-number="05">
         <div class="section-wrap">
             <div class="sec-label reveal">Section 04</div>
             <div class="h-main reveal reveal-delay-1">Awards &</div>
@@ -1775,9 +1928,27 @@
 
         function goTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
 
+        function filterPortfolio(filter) {
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.classList.toggle('is-filtered-out', filter !== 'all' && section.dataset.category !== filter);
+            });
+            document.querySelectorAll('[data-filter]').forEach(control => {
+                control.classList.toggle('active', control.dataset.filter === filter);
+            });
+            document.body.classList.toggle('filtering', filter !== 'all');
+            const target = filter === 'all' ? 'portfolio-overview' : document.querySelector(`[data-category="${filter}"]`)?.id;
+            if (target) {
+                window.requestAnimationFrame(() => goTo(target));
+            }
+        }
+
         const TOTAL = TIMELINE.reduce((a, g) => a + g.items.length, 0);
         document.getElementById('tl-total').textContent = TOTAL;
         document.getElementById('cnt-proj').textContent = TOTAL + '+';
+        document.getElementById('overview-showcase-count').textContent = document.querySelectorAll('.showcase-card').length;
+        document.getElementById('overview-projects-count').textContent = PROJECTS.length;
+        document.getElementById('overview-timeline-count').textContent = TOTAL;
+        document.getElementById('overview-awards-count').textContent = AWARDS.length;
 
         /* ── RENDER PROJECTS ── */
         const pl = document.getElementById('proj-list');
