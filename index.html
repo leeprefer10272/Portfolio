@@ -390,10 +390,6 @@
             margin-bottom: 16px;
         }
 
-        .category-section.is-filtered-out {
-            display: none;
-        }
-
         /* ── SHOWCASE ── */
         #showcase {
             padding: 80px 40px 100px;
@@ -1530,7 +1526,7 @@
     <section class="portfolio-overview" id="portfolio-overview" aria-labelledby="overview-title">
         <div class="overview-heading">
             <h2 class="overview-title" id="overview-title">포트폴리오 둘러보기</h2>
-            <span class="overview-hint">카테고리를 누르면 해당 내용만 볼 수 있습니다.</span>
+            <span class="overview-hint">카테고리를 누르면 해당 내용으로 이동합니다.</span>
         </div>
         <div class="overview-grid">
             <button class="overview-card active" type="button" data-filter="all" onclick="filterPortfolio('all')">
@@ -1903,13 +1899,10 @@
         function goTo(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
 
         function filterPortfolio(filter) {
-            document.querySelectorAll('.category-section').forEach(section => {
-                section.classList.toggle('is-filtered-out', filter !== 'all' && section.dataset.category !== filter);
-            });
             document.querySelectorAll('[data-filter]').forEach(control => {
                 control.classList.toggle('active', control.dataset.filter === filter);
             });
-            document.body.classList.toggle('filtering', filter !== 'all');
+            document.body.classList.remove('filtering');
             const target = filter === 'all' ? 'portfolio-overview' : document.querySelector(`[data-category="${filter}"]`)?.id;
             if (target) {
                 window.requestAnimationFrame(() => goTo(target));
