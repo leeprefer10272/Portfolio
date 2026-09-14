@@ -1577,8 +1577,10 @@
     <section id="showcase" class="category-section" data-category="showcase" data-number="02">
         <div style="max-width: 1120px; margin: 0 auto 40px;">
             <div class="sec-label reveal">Section 01</div>
-            <div class="h-main reveal reveal-delay-1">Highlights</div>
-            <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0">1년 내의 대표업적</div>
+            <div style="display: flex; align-items: baseline; gap: 16px;">
+                <div class="h-main reveal reveal-delay-1">Highlights</div>
+                <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0">1년 내의 대표업적</div>
+            </div>
         </div>
         <div class="showcase-grid">
             <!-- AIIRC Gold Card -->
@@ -1943,7 +1945,7 @@
             document.getElementById('modal-proj-idx').textContent = p.idx;
             document.getElementById('modal-proj-title').textContent = p.title;
             document.getElementById('modal-proj-subtitle').textContent = p.subtitle;
-            document.getElementById('modal-proj-desc').textContent = p.desc;
+            document.getElementById('modal-proj-desc').innerHTML = p.desc;
             const modalLink = document.getElementById('modal-proj-link');
             if (p.url) {
                 modalLink.href = p.url;
