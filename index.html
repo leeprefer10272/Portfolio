@@ -549,8 +549,8 @@
         .project-modal-placeholder {
             width: 100%;
             height: auto;
-            min-height: 300px;
             max-width: 600px;
+            aspect-ratio: 4 / 3;
             display: grid;
             place-items: center;
             flex-shrink: 0;
@@ -1872,7 +1872,8 @@
                 idx: "03", title: "카카오 AI 루키캠프 2기", subtitle: "인공지능 문제 해결 캠프",
                 desc: "문제를 질문으로 바꾸고 인공지능으로 해결하는 카카오 AI 루키캠프 작품입니다.<br>팀 프로젝트를 통해 데이터 기반 문제 해결 과정을 경험했습니다.",
                 tags: ["인공지능", "팀 프로젝트", "문제 해결"],
-                url: "https://www.kakaoairookiecamp.com/activity/100"
+                url: "https://www.kakaoairookiecamp.com/activity/100",
+                img: "file/file/Web/images/kakao_ai_rookie_camp_logo.png"
             }
         ];
 
@@ -1993,11 +1994,15 @@
                     startCarouselAuto(projIdx);
                 }
             } else {
-                // 일반 이미지
+                // 일반 이미지 또는 링크
                 const imgSrc = p.images ? p.images[0] : p.img;
-                imgContainer.innerHTML = imgSrc
-                    ? `<img id="modal-proj-img" class="project-modal-img" src="${imgSrc}" alt="${p.title}" loading="lazy">`
-                    : `<div class="project-modal-placeholder">${p.title}</div>`;
+                if (imgSrc) {
+                    imgContainer.innerHTML = `<a href="${p.url || '#'}" target="_blank" rel="noopener" style="display: block; width: 100%; height: 100%;">
+                        <img id="modal-proj-img" class="project-modal-img" src="${imgSrc}" alt="${p.title}" loading="lazy" style="cursor: pointer;">
+                    </a>`;
+                } else {
+                    imgContainer.innerHTML = (p.url ? `<div class="project-modal-placeholder"><a href="${p.url}" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 8px;">바로가기<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;"><path d="M2 14L14 2M14 2H6M14 2V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>` : `<div class="project-modal-placeholder">${p.title}</div>`);
+                }
             }
 
             const modal = document.getElementById('projectModal');
