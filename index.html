@@ -1377,7 +1377,6 @@
         <div class="nav-links">
             <a onclick="goTo('projects')">작업</a>
             <a onclick="goTo('timeline-sec')">활동 기록</a>
-            <a onclick="goTo('skills-sec')">기술</a>
             <a onclick="goTo('awards-sec')">수상·자격</a>
         </div>
     </nav>
@@ -1599,18 +1598,10 @@
         </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills-sec" data-number="05">
-        <div class="sec-label reveal">Section 04</div>
-        <div class="h-main reveal reveal-delay-1">Technical</div>
-        <div class="h-sub reveal reveal-delay-2" style="margin-bottom:48px">Skills</div>
-        <div class="skills-grid" id="skills-grid"></div>
-    </section>
-
     <!-- AWARDS -->
-    <section class="full" id="awards-sec" data-number="06">
+    <section class="full" id="awards-sec" data-number="05">
         <div class="section-wrap">
-            <div class="sec-label reveal">Section 05</div>
+            <div class="sec-label reveal">Section 04</div>
             <div class="h-main reveal reveal-delay-1">Awards &</div>
             <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0">Certificates</div>
             <div class="award-summary reveal reveal-delay-3" id="award-summary"></div>
@@ -1626,9 +1617,9 @@
         </div>
     </div>
 
-    <section class="process-band" data-number="07">
+    <section class="process-band" data-number="06">
         <div class="section-wrap">
-            <div class="sec-label reveal">Process / 07</div>
+            <div class="sec-label reveal">Process / 06</div>
             <div class="process-grid">
                 <div class="process-step reveal"><span>01</span><strong>Observe</strong><p>문제를 가까이서 보고, 사용자의 언어로 다시 씁니다.</p></div>
                 <div class="process-step reveal reveal-delay-1"><span>02</span><strong>Shape</strong><p>복잡한 흐름을 선명한 구조와 움직임으로 바꿉니다.</p></div>
@@ -1637,9 +1628,9 @@
         </div>
     </section>
 
-    <section class="contact-band" id="contact" data-number="08">
+    <section class="contact-band" id="contact" data-number="07">
         <div class="contact-inner">
-            <div class="sec-label reveal" style="color:#777">Contact / 08</div>
+            <div class="sec-label reveal" style="color:#777">Contact / 07</div>
             <div class="contact-title reveal reveal-delay-1">LET'S MAKE<br><span>THE NEXT THING.</span></div>
             <a class="contact-link reveal reveal-delay-2" href="mailto:leeprefer1027@naver.com">leeprefer1027@naver.com ↗</a>
         </div>
@@ -1752,17 +1743,6 @@
             { period: "2025.12", items: ["lshgame.kro.kr", "lshgravity.kro.kr", "3d게임.kro.kr", "테스트이선호.kro.kr ✕"] },
             { period: "2025.11", items: ["jumpmaping.kro.kr", "gamecookie.kro.kr", "applesnake.kro.kr", "lpfr.kro.kr", "이건모를껄.kro.kr"] },
             { period: "2025.10", items: ["야구게임이선호.kro.kr", "미로찾기이선호.kro.kr", "공량형게임이선호.kro.kr", "엄창난rpg.kro.kr", "이선호rpg.kro.kr"] }
-        ];
-
-        const SKILLS = [
-            { label: "Python / Data Analysis", level: 88 },
-            { label: "PyTorch / TensorFlow", level: 85 },
-            { label: "NumPy / Pandas", level: 87 },
-            { label: "Matplotlib / Seaborn", level: 84 },
-            { label: "Scikit-learn / ML", level: 82 },
-            { label: "JavaScript / Canvas API", level: 80 },
-            { label: "Django / FastAPI", level: 78 },
-            { label: "Three.js / WebGL", level: 75 }
         ];
 
         const AWARDS = [
@@ -1961,20 +1941,6 @@
                 ch.classList.add('open');
             }
         }
-
-        /* ── RENDER SKILLS ── */
-        const sg = document.getElementById('skills-grid');
-        SKILLS.forEach((s, i) => {
-            const div = document.createElement('div');
-            div.className = 'skill-row reveal' + (i % 2 === 1 ? ' reveal-delay-1' : '');
-            div.innerHTML = `
-    <div class="skill-top">
-      <span class="skill-label">${s.label}</span>
-      <span class="skill-num">${s.level}</span>
-    </div>
-    <div class="skill-track"><div class="skill-fill" data-w="${s.level}"></div></div>`;
-            sg.appendChild(div);
-        });
 
         /* ── RENDER AWARDS ── */
         const types = ['상장', '자격증', '수료증', '이수증'];
