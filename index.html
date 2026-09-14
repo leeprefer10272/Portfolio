@@ -1736,6 +1736,8 @@
         ];
 
         const TIMELINE = [
+            { period: "2026.08", items: [{ name: "KARC1", url: "https://github.com/LSH-1027/KARC1" }] },
+            { period: "2026.07", items: [{ name: "Living-Alone", url: "https://github.com/lsthc/Living-Alone" }] },
             { period: "2026.05", items: ["cybervoid.kro.kr", "newgame12345678.kro.kr", "shooting12345678.kro.kr", "용돈을주세요깁미더머니.kro.kr"] },
             { period: "2026.04", items: ["바운싱볼아카이브.kro.kr", "bbac.kro.kr", "rythm리듬.kro.kr", "미니게임minigame.kro.kr", "receiptscanner.kro.kr", "urlviewertool.kro.kr", "dfsbfstest.kro.kr", "dfsbfstest2.kro.kr"] },
             { period: "2026.03", items: ["웹사이트카피툴.kro.kr", "아스키코드.kro.kr"] },
@@ -1928,10 +1930,11 @@
     </button>
     <div class="tl-items" id="titems-${gi}">
       <div class="tl-grid">${g.items.map(item => {
-                const dead = item.includes('✕');
-                const name = item.replace(' ✕', '');
+                const entry = typeof item === 'string' ? { name: item, url: `http://${item}` } : item;
+                const dead = entry.name.includes('✕');
+                const name = entry.name.replace(' ✕', '');
                 if (dead) return `<span class="tl-item dead"><span>${name}</span><span style="font-size:9px;color:#2a2a2a">offline</span></span>`;
-                return `<a class="tl-item" href="http://${name}" target="_blank"><span>${name}</span><span class="tl-item-arrow">↗</span></a>`;
+                return `<a class="tl-item" href="${entry.url}" target="_blank" rel="noopener"><span>${name}</span><span class="tl-item-arrow">↗</span></a>`;
             }).join('')}</div>
     </div>`;
             tll.appendChild(div);
