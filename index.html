@@ -1872,15 +1872,7 @@
                 idx: "03", title: "카카오 AI 루키캠프 2기", subtitle: "인공지능 문제 해결 캠프",
                 desc: "문제를 질문으로 바꾸고 인공지능으로 해결하는 카카오 AI 루키캠프 작품입니다.<br>팀 프로젝트를 통해 데이터 기반 문제 해결 과정을 경험했습니다.",
                 tags: ["인공지능", "팀 프로젝트", "문제 해결"],
-                url: "https://www.kakaoairookiecamp.com/",
-                images: [
-                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 간단 설계도.png",
-                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 산출물 닫힘.jpg",
-                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 산출물 열림.jpg",
-                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 개발 카메라.jpg",
-                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 팜플렛.jpg",
-                    "file/file/Credentials/카카오루키캠프 팀 EASE 자료/EASE 시연영상.mp4"
-                ]
+                url: "https://www.kakaoairookiecamp.com/activity/100"
             }
         ];
 
@@ -1979,7 +1971,7 @@
 
             // 이미지 컨테이너 업데이트
             const imgContainer = document.getElementById('modal-proj-img-container');
-            if (p.images && (p.title === 'BBAC' || p.title === '카카오 AI 루키캠프 2기')) {
+            if (p.images && p.title === 'BBAC') {
                 // BBAC 및 카카오 루키캠프 캐러셀
                 const currentImg = p.images[0];
                 const isVideo = currentImg.endsWith('.mp4');
