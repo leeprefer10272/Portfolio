@@ -1639,10 +1639,8 @@
             <div class="showcase-card reveal reveal-delay-2">
                 <div class="showcase-img-container"
                     style="background: var(--black); display: flex; align-items: center; justify-content: center;">
-                    <div style="text-align: center; color: var(--white);">
-                        <div style="font-size: 28px; font-weight: 900; margin-bottom: 8px;">AI ROOKIE</div>
-                        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--gray4);">KAKAO CAMP / 02</div>
-                    </div>
+                    <img class="showcase-img" src="file/file/Web/images/kakao_ai_rookie_camp_logo.png"
+                        alt="카카오 AI 루키캠프 로고" style="object-fit: contain;">
                 </div>
                 <div class="showcase-content">
                     <div class="showcase-badge">활동</div>
@@ -1757,7 +1755,7 @@
             <div class="sec-label reveal">Section 03</div>
             <div class="h-main reveal reveal-delay-1" style="color:#fff">Project</div>
             <div class="h-sub reveal reveal-delay-2" style="color:#2a2a2a">Timeline</div>
-            <p class="reveal reveal-delay-3">2024.12 — 2026.08 &nbsp;·&nbsp; 총 <strong id="tl-total">38</strong>개 프로젝트
+            <p class="reveal reveal-delay-3">2024.12 — 2026.09 &nbsp;·&nbsp; 총 <strong id="tl-total">38</strong>개 프로젝트
                 배포</p>
             <div id="tl-list"></div>
         </div>
@@ -1881,10 +1879,17 @@
                 tags: ["인공지능", "팀 프로젝트", "문제 해결"],
                 url: "https://www.kakaoairookiecamp.com/activity/100",
                 img: "file/file/Web/images/kakao_ai_rookie_camp_logo.png"
+            },
+            {
+                idx: "05", title: "지진 분석 보고서", subtitle: "지진 데이터 분석 연구",
+                desc: "지진 데이터를 바탕으로 현상을 분석하고 시각화한 연구 보고서입니다.<br>자세한 분석 과정과 결과는 보고서에서 확인할 수 있습니다.",
+                tags: ["Data Analysis", "Research", "PDF Report"],
+                url: "file/file/Web/file/이선호-지진분석보고서.pptx.pdf"
             }
         ];
 
         const TIMELINE = [
+            { period: "2026.09", items: [{ name: "지진 분석 보고서", url: "file/file/Web/file/이선호-지진분석보고서.pptx.pdf" }] },
             { period: "2026.08", items: [{ name: "KARC1T", url: "https://github.com/LSH-1027/KARC1T" }] },
             { period: "2026.07", items: [{ name: "Living-Alone", url: "https://github.com/LSH-1027/Living-Alone" }] },
             { period: "2026.05", items: ["cybervoid.kro.kr", "newgame12345678.kro.kr", "shooting12345678.kro.kr", "용돈을주세요깁미더머니.kro.kr"] },
@@ -1901,11 +1906,11 @@
             { title: "제3회 AIIRC AI 창작 뮤직비디오 중학생부 금상", org: "AIIRC", date: "2026", type: "상장", image: "file/file/Credentials/images/AI창작 뮤직비디오 중고등부 금상.png" },
             { title: "카카오 AI 루키캠프 2기 수료", org: "카카오 AI 루키캠프", date: "2026.08.11 — 2026.08.14", type: "수료", image: "file/file/Credentials/images/카카오루키캠프2기 수료증.png" },
             { title: "인공지능 데이터분석 청소년부 은상", org: "한국정보기술진흥원", date: "2025.09.25", type: "상장", image: "file/file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg" },
-            { title: "부산광역시북부영재교욱원 수학 영역 6학년 수료", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원_수학.jpg" },
+            { title: "부산광역시 북부 영재교욱원 수학영역 6학년 수료", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원_수학.jpg" },
             { title: "DIAT GOLD MASTER", org: "한국정보통신진흥협회", date: "2024.09.30", type: "자격증", image: "file/file/Credentials/images/DIAT GOLD MASTER 자격증.JPG" },
             { title: "코딩창의개발능력 · 스크래치", org: "창의융합인재교육원", date: "2024.08.21", type: "자격증", image: "file/file/Credentials/images/코딩창의개발능력 합격증서.png" },
             { title: "제57회 과학의 날 상장", org: "과학기술정보통신부", date: "2024.04.22", type: "상장", image: "file/file/Credentials/images/제57회과학의날.jpg" },
-            { title: "부산광역시북부영재교욱원 수학 영역 5학년 수료", org: "부산광역시북부영재교육원", date: "2024.01.10", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원수학.jpg" },
+            { title: "부산광역시 북부 영재교욱원 수학영역 5학년 수료", org: "부산광역시북부영재교육원", date: "2024.01.10", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원수학.jpg" },
             { title: "부산수학문화관 체험수학캠프", org: "부산광역시교육청창의융합교육원", date: "2023.08.24", type: "수료", image: "file/file/Credentials/images/부산수학문화관_체험수학캠프.jpg" },
             { title: "로봇발명반", org: "부산광역시북부교육지원청교육장", date: "2022.12.14", type: "이수증", image: "file/file/Credentials/images/부산광역시북부교육지원청교육장_로봇발명반.jpg" },
             { title: "대학부설 과학영재교육원 선교육과정", org: "대학부설 과학영재교육원", date: "2022.08.13", type: "이수증", image: "file/file/Credentials/images/대학부설_과학영재교육원장협의회.jpg" },
