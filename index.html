@@ -545,6 +545,19 @@
             opacity: 1;
         }
 
+        .project-modal-placeholder {
+            width: 300px;
+            height: 200px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            background: var(--gray5);
+            color: var(--black);
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
+
         .project-modal-info {
             flex: 1;
             display: flex;
@@ -1844,11 +1857,9 @@
                 img: "https://opengraph.githubassets.com/1/lsthc/Living-Alone"
             },
             {
-                idx: "03", title: "KARC1", subtitle: "GitHub 프로젝트",
-                desc: "KARC1 프로젝트 저장소입니다. 소스 코드와 프로젝트 진행 내용을 GitHub에서 확인할 수 있습니다.",
-                tags: ["GitHub", "프로젝트"],
-                url: "https://github.com/LSH-1027/KARC1T",
-                img: "https://opengraph.githubassets.com/1/LSH-1027/KARC1"
+                idx: "03", title: "카카오 AI 루키캠프 2기", subtitle: "인공지능 문제 해결 캠프",
+                desc: "문제를 질문으로 바꾸고 인공지능으로 해결하는 카카오 AI 루키캠프 작품입니다. 팀 프로젝트를 통해 데이터 기반 문제 해결 과정을 경험했습니다.",
+                tags: ["인공지능", "팀 프로젝트", "문제 해결"]
             }
         ];
 
@@ -1932,7 +1943,14 @@
             document.getElementById('modal-proj-title').textContent = p.title;
             document.getElementById('modal-proj-subtitle').textContent = p.subtitle;
             document.getElementById('modal-proj-desc').textContent = p.desc;
-            document.getElementById('modal-proj-link').href = p.url;
+            const modalLink = document.getElementById('modal-proj-link');
+            if (p.url) {
+                modalLink.href = p.url;
+                modalLink.style.display = 'inline-flex';
+            } else {
+                modalLink.removeAttribute('href');
+                modalLink.style.display = 'none';
+            }
 
             // 태그 설정
             const tagsHtml = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
@@ -1956,7 +1974,9 @@
             } else {
                 // 일반 이미지
                 const imgSrc = p.images ? p.images[0] : p.img;
-                imgContainer.innerHTML = `<img id="modal-proj-img" class="project-modal-img" src="${imgSrc}" alt="${p.title}" loading="lazy">`;
+                imgContainer.innerHTML = imgSrc
+                    ? `<img id="modal-proj-img" class="project-modal-img" src="${imgSrc}" alt="${p.title}" loading="lazy">`
+                    : `<div class="project-modal-placeholder">${p.title}</div>`;
             }
 
             const modal = document.getElementById('projectModal');
