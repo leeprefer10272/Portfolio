@@ -386,30 +386,6 @@
             line-height: 1;
         }
 
-        .overview-filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
-        }
-
-        .overview-filter {
-            padding: 8px 14px;
-            border: 1px solid var(--gray4);
-            background: transparent;
-            color: var(--gray2);
-            font-size: 11px;
-            cursor: pointer;
-            transition: all .2s;
-        }
-
-        .overview-filter:hover,
-        .overview-filter.active {
-            border-color: var(--black);
-            background: var(--black);
-            color: var(--white);
-        }
-
         body.filtering .portfolio-overview {
             margin-bottom: 16px;
         }
@@ -1577,13 +1553,6 @@
                 <span class="overview-card-label">수상·자격</span>
                 <span class="overview-card-count" id="overview-awards-count">11</span>
             </button>
-        </div>
-        <div class="overview-filter-row" aria-label="카테고리 필터">
-            <button class="overview-filter active" type="button" data-filter="all" onclick="filterPortfolio('all')">전체</button>
-            <button class="overview-filter" type="button" data-filter="showcase" onclick="filterPortfolio('showcase')">하이라이트만</button>
-            <button class="overview-filter" type="button" data-filter="projects" onclick="filterPortfolio('projects')">대표 프로젝트만</button>
-            <button class="overview-filter" type="button" data-filter="timeline" onclick="filterPortfolio('timeline')">타임라인만</button>
-            <button class="overview-filter" type="button" data-filter="awards" onclick="filterPortfolio('awards')">수상·자격만</button>
         </div>
     </section>
 
