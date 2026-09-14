@@ -1629,76 +1629,116 @@
             .showcase-grid { grid-template-columns: 1fr; }
             .h-main, .h-sub { font-size: clamp(42px, 14vw, 64px); }
         }
+
+        :root {
+            --black: #071a46;
+            --gray1: #ffffff;
+            --gray2: #c7d8f7;
+            --gray3: #90a9d7;
+            --gray4: #5f7fba;
+            --gray5: #19366f;
+            --white: #ffffff;
+            --canvas: #071a46;
+            --indigo: #102b61;
+            --blurple: #2f6bff;
+            --green: #dce8ff;
+            --magenta: #2f6bff;
+            --cyan: #8fb5ff;
+        }
+
+        body::before {
+            background: radial-gradient(circle at 82% 8%, rgba(47, 107, 255, .28), transparent 30%), radial-gradient(circle at 12% 34%, rgba(143, 181, 255, .16), transparent 36%);
+        }
+
+        .nav-logo::before { background: var(--blurple); }
+        .hero-poster { background: linear-gradient(145deg, #3d7aff, #163b86); }
+        #hero::before { background: linear-gradient(135deg, rgba(47, 107, 255, .8), rgba(143, 181, 255, .34)); }
+        .btn-dark { background: var(--blurple); color: var(--white); }
+        .btn-dark:hover { background: #5083ff; color: var(--white); }
+        .btn-light { background: var(--white); color: var(--canvas); }
+        .btn-light:hover { background: #dce8ff; color: var(--canvas); }
+        .marquee { background: var(--blurple); }
+        .line-inner { background: var(--blurple); }
+        .showcase-card:nth-child(3n + 1) { background: linear-gradient(145deg, #19458f, #2f6bff); }
+        .showcase-card:nth-child(3n + 2) { background: linear-gradient(145deg, #102b61, #3d7aff); }
+        .showcase-card:nth-child(3n) { background: #163b86; }
+        .showcase-item::before { color: var(--cyan); }
+        .tag { background: #2f6bff; }
+        .proj-toggle { background: var(--blurple); }
+        #timeline-sec { background: #041333; }
+        #awards-sec { background: #19458f; }
+        .process-band { background: linear-gradient(135deg, #19458f, #2f6bff); }
+        .contact-band { background: var(--blurple); }
+        .contact-title span { color: var(--white); }
+        .process-step span { color: var(--cyan); }
+        .project-modal-close, .modal-close { background: var(--blurple); }
+        .intro { display: none !important; }
+        .sec-label { color: var(--cyan); }
+        .contact-band .sec-label { color: var(--white) !important; }
+        .showcase-badge, .showcase-desc, .showcase-item { color: rgba(255, 255, 255, .84); }
     </style>
 
-    <div class="intro" id="intro" aria-label="이선호의 포트폴리오에 오신 것을 환영합니다">
-        <div class="intro-ring intro-ring-a"></div>
-        <div class="intro-ring intro-ring-b"></div>
-        <div class="intro-grid"></div>
-        <div class="intro-copy" data-text="LSH"></div>
-        <div class="intro-meta"><span>LSH / 2026</span><span>INITIALIZING PORTFOLIO</span></div>
-    </div>
     <div class="progress"><span id="progressBar"></span></div>
     <div class="cursor" id="cursor"><span></span></div>
 
     <nav>
-        <div class="nav-logo" onclick="scrollTo(0,0)">LSH</div>
+        <div class="nav-logo" onclick="scrollTo(0,0)">이선호</div>
         <div class="nav-links">
-            <a onclick="goTo('projects')">Work</a>
-            <a onclick="goTo('timeline-sec')">Timeline</a>
-            <a onclick="goTo('skills-sec')">Skills</a>
-            <a onclick="goTo('awards-sec')">Awards</a>
+            <a onclick="goTo('projects')">작업</a>
+            <a onclick="goTo('timeline-sec')">활동 기록</a>
+            <a onclick="goTo('skills-sec')">기술</a>
+            <a onclick="goTo('awards-sec')">수상·자격</a>
         </div>
     </nav>
 
     <!-- HERO -->
     <section id="hero">
-        <div class="hero-bg-text">LSH</div>
+        <div class="hero-bg-text">이선호</div>
         <div class="hero-orbit orbit-one"></div>
         <div class="hero-orbit orbit-two"></div>
         <div class="hero-poster" data-hover>
-            <span class="poster-index">V/ 01</span>
-            <span class="poster-name">LEE<br>SEONHO</span>
+            <span class="poster-index">작업 / 01</span>
+            <span class="poster-name">이선호</span>
             <span class="poster-rule"></span>
-            <span class="poster-caption">CREATIVE<br>DEVELOPER</span>
+            <span class="poster-caption">창작<br>개발자</span>
         </div>
-        <div class="hero-label">Student Developer — Busan, KR</div>
+        <div class="hero-label">학생 개발자 · 부산</div>
         <div class="hero-name"><span>이선호</span></div>
-        <div class="hero-sub"><span>Lee Seonho</span></div>
+        <div class="hero-sub"><span>만들고, 실험하고, 개선합니다</span></div>
         <div class="stats-row">
             <div>
                 <div class="stat-n" id="cnt-proj">0+</div>
-                <div class="stat-l">Web Projects</div>
+                <div class="stat-l">웹 프로젝트</div>
             </div>
             <div>
                 <div class="stat-n">11</div>
-                <div class="stat-l">Awards & Certs</div>
+                <div class="stat-l">수상·자격</div>
             </div>
             <div>
-                <div class="stat-n">7mo</div>
-                <div class="stat-l">Streak</div>
+                <div class="stat-n">7개월</div>
+                <div class="stat-l">활동 기간</div>
             </div>
         </div>
-        <p class="hero-desc">Android · Web · Creative Coding · Game Dev.<br>이선호의 포트폴리오입니다</p>
+        <p class="hero-desc">안드로이드 · 웹 · 창작 코딩 · 게임 개발<br>이선호의 포트폴리오입니다</p>
         <div class="btn-row">
-            <button class="btn btn-dark" onclick="goTo('projects')">View Work ↓</button>
-            <button class="btn btn-light" onclick="goTo('awards-sec')">Awards</button>
+            <button class="btn btn-dark" onclick="goTo('projects')">작업 보기 ↓</button>
+            <button class="btn btn-light" onclick="goTo('awards-sec')">수상·자격</button>
         </div>
     </section>
 
     <!-- SHOWCASE -->
-    <div class="marquee" aria-hidden="true"><div class="marquee-track">MAKE IT WORK / MAKE IT CLEAR / MAKE IT STRANGE / &nbsp; MAKE IT WORK / MAKE IT CLEAR / MAKE IT STRANGE / &nbsp;</div></div>
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">만들고 / 선명하게 / 다르게 / &nbsp; 만들고 / 선명하게 / 다르게 / &nbsp;</div></div>
 
     <section class="manifesto" data-number="01">
-        <div class="sec-label reveal">Manifesto / 01</div>
-        <div class="h-main reveal reveal-delay-1">Build with<br>curiosity.</div>
+        <div class="sec-label reveal">방향 / 01</div>
+        <div class="h-main reveal reveal-delay-1">호기심으로<br>만듭니다.</div>
         <p class="manifesto-copy reveal reveal-delay-2">좋은 인터랙션은 설명보다 먼저 도착합니다. 데이터를 읽고, 화면을 설계하고, 작은 실험을 반복하며 기술과 감각 사이의 빈틈을 만듭니다.</p>
     </section>
 
     <section id="showcase" data-number="02">
         <div style="max-width: 1120px; margin: 0 auto 40px;">
-            <div class="sec-label reveal">Section 01</div>
-            <div class="h-main reveal reveal-delay-1">Highlights</div>
+            <div class="sec-label reveal">주요 활동 / 01</div>
+            <div class="h-main reveal reveal-delay-1">주요 기록</div>
             <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0"></div>
         </div>
         <div class="showcase-grid">
@@ -1715,7 +1755,7 @@
                     <div class="showcase-title">AI 창작 뮤직비디오</div>
                     <div class="showcase-desc">제3회 AIIRC · 중학생부 금상</div>
                     <div class="showcase-items">
-                        <div class="showcase-item">AI CREATIVITY 부문</div>
+                        <div class="showcase-item">AI 창작 부문</div>
                         <div class="showcase-item"><a href="https://aiirc.org/102" target="_blank" rel="noopener"
                                 style="color: var(--gray2); text-decoration: underline; cursor: pointer;">aiirc.org</a>
                         </div>
@@ -1730,12 +1770,12 @@
                         class="showcase-img" style="object-fit: contain;">
                 </div>
                 <div class="showcase-content">
-                    <div class="showcase-badge">Research</div>
+                    <div class="showcase-badge">연구</div>
                     <div class="showcase-title">혼자 남겨진 도시, 부산</div>
                     <div class="showcase-desc">독거노인·고독사 데이터 분석</div>
                     <div class="showcase-items">
-                        <div class="showcase-item">React · TypeScript · D3-geo</div>
-                        <div class="showcase-item">부산정보영재교육원 Data AI</div>
+                        <div class="showcase-item">React · TypeScript · 지도 시각화</div>
+                        <div class="showcase-item">부산정보영재교육원 데이터 AI</div>
                     </div>
                 </div>
             </div>
@@ -1745,8 +1785,8 @@
                 <div class="showcase-img-container"
                     style="background: var(--black); display: flex; align-items: center; justify-content: center;">
                     <div style="text-align: center; color: var(--white);">
-                        <div style="font-size: 28px; font-weight: 900; margin-bottom: 8px;">AI ROOKIE</div>
-                        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--gray4);">KAKAO CAMP / 02</div>
+                            <div style="font-size: 28px; font-weight: 900; margin-bottom: 8px;">AI 루키</div>
+                        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--gray4);">카카오 캠프 / 02</div>
                     </div>
                 </div>
                 <div class="showcase-content">
@@ -1755,7 +1795,7 @@
                     <div class="showcase-desc">문제를 질문하고 AI로 해결하는 여름캠프</div>
                     <div class="showcase-items">
                         <div class="showcase-item">데이터 기반 문제 해결</div>
-                        <div class="showcase-item">팀 프로젝트 · AI 엔지니어링</div>
+                        <div class="showcase-item">팀 프로젝트 · 인공지능 설계</div>
                         <div class="showcase-item"><a href="https://www.kakaoairookiecamp.com/" target="_blank" rel="noopener"
                                 style="color: var(--gray2); text-decoration: underline; cursor: pointer;">kakaoairookiecamp.com</a>
                         </div>
@@ -1785,11 +1825,11 @@
                     <img src="file/file/Web/images/bbac (1).jpg" alt="BBAC Physics Game" class="showcase-img">
                 </div>
                 <div class="showcase-content">
-                    <div class="showcase-badge">Web Game</div>
+                    <div class="showcase-badge">웹 게임</div>
                     <div class="showcase-title">BBAC</div>
-                    <div class="showcase-desc">2D Physics & Platformer</div>
+                    <div class="showcase-desc">2D 물리 기반 플랫폼 게임</div>
                     <div class="showcase-items">
-                        <div class="showcase-item">Vanilla JS · Canvas API</div>
+                        <div class="showcase-item">자바스크립트 · 캔버스 API</div>
                         <div class="showcase-item"><a href="http://bbac.kro.kr" target="_blank"
                                 style="color: var(--gray2); text-decoration: underline; cursor: pointer;">bbac.kro.kr</a>
                         </div>
@@ -1822,9 +1862,9 @@
 
     <!-- PROJECTS -->
     <section id="projects" data-number="03">
-        <div class="sec-label reveal">Section 02</div>
-        <div class="h-main reveal reveal-delay-1">Featured</div>
-        <div class="h-sub reveal reveal-delay-2" style="margin-bottom:40px">Projects</div>
+            <div class="sec-label reveal">프로젝트 / 02</div>
+        <div class="h-main reveal reveal-delay-1">대표 작업</div>
+        <div class="h-sub reveal reveal-delay-2" style="margin-bottom:40px">프로젝트</div>
 
         <div id="proj-list"></div>
     </section>
@@ -1847,7 +1887,7 @@
             <div class="project-modal-body">
                 <p class="project-modal-desc" id="modal-proj-desc"></p>
                 <a id="modal-proj-link" class="proj-link" href="" target="_blank">
-                    Visit Site
+                    사이트 방문
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                         <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.4" />
                     </svg>
@@ -1859,9 +1899,9 @@
     <!-- TIMELINE -->
     <section class="full" id="timeline-sec" data-number="04">
         <div class="section-wrap">
-            <div class="sec-label reveal">Section 03</div>
-            <div class="h-main reveal reveal-delay-1" style="color:#fff">Project</div>
-            <div class="h-sub reveal reveal-delay-2" style="color:#2a2a2a">Timeline</div>
+            <div class="sec-label reveal">활동 기록 / 03</div>
+            <div class="h-main reveal reveal-delay-1" style="color:#fff">프로젝트</div>
+            <div class="h-sub reveal reveal-delay-2" style="color:#2a2a2a">일정</div>
             <p class="reveal reveal-delay-3">2025.10 — 2026.05 &nbsp;·&nbsp; 총 <strong id="tl-total">38</strong>개 프로젝트
                 배포</p>
             <div id="tl-list"></div>
@@ -1870,18 +1910,18 @@
 
     <!-- SKILLS -->
     <section id="skills-sec" data-number="05">
-        <div class="sec-label reveal">Section 04</div>
-        <div class="h-main reveal reveal-delay-1">Technical</div>
-        <div class="h-sub reveal reveal-delay-2" style="margin-bottom:48px">Skills</div>
+        <div class="sec-label reveal">기술 / 04</div>
+        <div class="h-main reveal reveal-delay-1">사용 기술</div>
+        <div class="h-sub reveal reveal-delay-2" style="margin-bottom:48px">능력</div>
         <div class="skills-grid" id="skills-grid"></div>
     </section>
 
     <!-- AWARDS -->
     <section class="full" id="awards-sec" data-number="06">
         <div class="section-wrap">
-            <div class="sec-label reveal">Section 05</div>
-            <div class="h-main reveal reveal-delay-1">Awards &</div>
-            <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0">Certificates</div>
+            <div class="sec-label reveal">수상·자격 / 05</div>
+            <div class="h-main reveal reveal-delay-1">수상 및</div>
+            <div class="h-sub reveal reveal-delay-2" style="margin-bottom:0">자격 기록</div>
             <div class="award-summary reveal reveal-delay-3" id="award-summary"></div>
             <div id="award-list"></div>
         </div>
@@ -1897,40 +1937,29 @@
 
     <section class="process-band" data-number="07">
         <div class="section-wrap">
-            <div class="sec-label reveal">Process / 07</div>
+            <div class="sec-label reveal">작업 방식 / 07</div>
             <div class="process-grid">
-                <div class="process-step reveal"><span>01</span><strong>Observe</strong><p>문제를 가까이서 보고, 사용자의 언어로 다시 씁니다.</p></div>
-                <div class="process-step reveal reveal-delay-1"><span>02</span><strong>Shape</strong><p>복잡한 흐름을 선명한 구조와 움직임으로 바꿉니다.</p></div>
-                <div class="process-step reveal reveal-delay-2"><span>03</span><strong>Release</strong><p>작게 배포하고 실제 반응을 읽으며 계속 개선합니다.</p></div>
+                <div class="process-step reveal"><span>01</span><strong>관찰</strong><p>문제를 가까이서 보고, 사용자의 언어로 다시 씁니다.</p></div>
+                <div class="process-step reveal reveal-delay-1"><span>02</span><strong>구성</strong><p>복잡한 흐름을 선명한 구조와 움직임으로 바꿉니다.</p></div>
+                <div class="process-step reveal reveal-delay-2"><span>03</span><strong>공개</strong><p>작게 배포하고 실제 반응을 읽으며 계속 개선합니다.</p></div>
             </div>
         </div>
     </section>
 
     <section class="contact-band" id="contact" data-number="08">
         <div class="contact-inner">
-            <div class="sec-label reveal" style="color:#777">Contact / 08</div>
-            <div class="contact-title reveal reveal-delay-1">LET'S MAKE<br><span>THE NEXT THING.</span></div>
+            <div class="sec-label reveal" style="color:#777">연락처 / 08</div>
+            <div class="contact-title reveal reveal-delay-1">다음 작업을<br><span>함께 만듭니다.</span></div>
             <a class="contact-link reveal reveal-delay-2" href="mailto:leeprefer1027@naver.com">leeprefer1027@naver.com ↗</a>
         </div>
     </section>
 
     <footer>
-        <span class="ft-l">© 2026 이선호 · Lee Seonho</span>
-        <span class="ft-r">Portfolio</span>
+        <span class="ft-l">© 2026 이선호</span>
+        <span class="ft-r">포트폴리오</span>
     </footer>
 
     <script>
-        const intro = document.getElementById('intro');
-        const introCopy = document.querySelector('.intro-copy');
-        const introMessage = introCopy.dataset.text;
-        let introChar = 0;
-        const typeIntro = () => {
-            introCopy.textContent = introMessage.slice(0, introChar++);
-            if (introChar <= introMessage.length) setTimeout(typeIntro, 52);
-        };
-        typeIntro();
-        setTimeout(() => intro?.remove(), 2300);
-
         const progressBar = document.getElementById('progressBar');
         const poster = document.querySelector('.hero-poster');
         const cursor = document.getElementById('cursor');
@@ -1971,30 +2000,30 @@
 
         const PROJECTS = [
             {
-                idx: "01", title: "Shooting Game", subtitle: "Browser-based Arcade Shooter",
+                idx: "01", title: "슈팅 게임", subtitle: "브라우저 아케이드 슈팅 게임",
                 desc: "키보드와 마우스로 조작하는 브라우저 슈팅 게임. 적 AI 패턴, 파티클 이펙트, 스코어 시스템을 순수 JavaScript로 구현했습니다.",
-                tags: ["JavaScript", "Canvas API", "Game Logic"],
+                tags: ["자바스크립트", "캔버스 API", "게임 로직"],
                 url: "http://shooting12345678.kro.kr",
                 img: "https://github.com/leeprefer10272/portfoilio/blob/main/shooting12345678_1.png?raw=true"
             },
             {
-                idx: "02", title: "3D Web Game", subtitle: "Three.js 3D Web Experience",
+                idx: "02", title: "3D 웹 게임", subtitle: "Three.js 기반 3D 웹 경험",
                 desc: "Three.js 기반 3D 인터랙티브 게임. 모바일 성능 최적화를 위한 Canvas 2D 폴백 렌더러를 직접 구현하고 레벨 디자인을 담당했습니다.",
-                tags: ["Three.js", "WebGL", "Performance"],
+                tags: ["Three.js", "WebGL", "성능 최적화"],
                 url: "http://3d게임.kro.kr",
                 img: "https://github.com/leeprefer10272/portfoilio/blob/main/3d%EA%B2%8C%EC%9E%84.png?raw=true"
             },
             {
-                idx: "03", title: "DFS / BFS Visualizer", subtitle: "Algorithm Visualization Tool",
+                idx: "03", title: "DFS / BFS 시각화", subtitle: "알고리즘 시각화 도구",
                 desc: "깊이 우선 탐색과 너비 우선 탐색 알고리즘을 실시간으로 시각화하는 학습 도구. 순수 JavaScript로 그래프 직접 편집 및 탐색 속도 조절 기능을 구현했습니다.",
-                tags: ["JavaScript", "Algorithm", "Visualization"],
+                tags: ["자바스크립트", "알고리즘", "시각화"],
                 url: "http://dfsbfstest2.kro.kr",
                 img: "https://github.com/leeprefer10272/portfoilio/blob/main/dfsbfstest2.png?raw=true"
             },
             {
-                idx: "04", title: "BBAC", subtitle: "Browser Physics Game",
+                idx: "04", title: "BBAC", subtitle: "브라우저 물리 게임",
                 desc: "순수 바닐라 JavaScript와 HTML5 Canvas API로 개발한 2D 게임. AABB 충돌 감지, 중력 시스템, 벽점프 등의 물리 엔진을 직접 구현했고, Mulberry32 시드 기반 RNG로 절차적 맵을 생성합니다. 파티클 시스템, localStorage 저장 기능도 포함되어 있습니다.",
-                tags: ["Vanilla JS", "Canvas API", "Physics Engine"],
+                tags: ["자바스크립트", "캔버스 API", "물리 엔진"],
                 url: "http://bbac.kro.kr",
                 images: [
                     "file/file/Web/images/bbac (1).jpg",
@@ -2005,9 +2034,9 @@
                 ]
             },
             {
-                idx: "05", title: "혼자 남겨진 도시, 부산", subtitle: "Living-Alone · Data Analysis Research",
+                idx: "05", title: "혼자 남겨진 도시, 부산", subtitle: "독거 생활 · 데이터 분석 연구",
                 desc: "부산정보영재교육원 Data AI 과정에서 진행한 데이터 분석 연구 프로젝트입니다. 전국 최초 초고령사회에 진입한 부산의 독거노인·고독사 문제를 2019~2024년 공공데이터로 검증했습니다. 부산 16개 구·군을 대상으로 주가설(부산 vs 전국 증가율)과 보조가설(원도심 5개 구 집중도)을 데이터 분석 전에 판정 기준으로 먼저 등록해두고, 결론을 나중에 끼워맞추지 못하도록 모든 계산을 순수 함수로 분리했습니다. 그 결과 주가설은 부분 채택(독거노인 증가율은 전국과 유사, 고독사 비율만 1.76%p 초과), 보조가설은 채택(원도심 27.8% vs 그 외 23.0%), 성별 편중 가설은 데이터 미공개로 검증 불가로 기록했습니다. React·TypeScript로 라인그래프와 코로플레스 지도 대시보드를 만들고, P키 발표 모드와 오프라인 폰트 임베딩까지 구현했습니다.",
-                tags: ["React", "TypeScript", "D3-geo", "Data Analysis"],
+                tags: ["React", "TypeScript", "지도 시각화", "데이터 분석"],
                 url: "https://github.com/lsthc/Living-Alone",
                 img: "https://opengraph.githubassets.com/1/lsthc/Living-Alone"
             }
@@ -2024,12 +2053,12 @@
         ];
 
         const SKILLS = [
-            { label: "Python / Data Analysis", level: 88 },
+            { label: "파이썬 / 데이터 분석", level: 88 },
             { label: "PyTorch / TensorFlow", level: 85 },
             { label: "NumPy / Pandas", level: 87 },
             { label: "Matplotlib / Seaborn", level: 84 },
-            { label: "Scikit-learn / ML", level: 82 },
-            { label: "JavaScript / Canvas API", level: 80 },
+            { label: "Scikit-learn / 머신러닝", level: 82 },
+            { label: "자바스크립트 / 캔버스 API", level: 80 },
             { label: "Django / FastAPI", level: 78 },
             { label: "Three.js / WebGL", level: 75 }
         ];
