@@ -1083,7 +1083,7 @@
             font-size: 10px;
             letter-spacing: .2em;
             text-transform: uppercase;
-            color: var(--gray3);
+            color: var(--black);
             margin-top: 3px;
         }
 
@@ -1535,7 +1535,7 @@
                 <div class="stat-l">Awards & Certs</div>
             </div>
             <div>
-                <div class="stat-n">7mo</div>
+                <div class="stat-n" id="streak-duration">0d</div>
                 <div class="stat-l">Streak</div>
             </div>
         </div>
@@ -1618,11 +1618,11 @@
             <!-- Research Card -->
             <div class="showcase-card reveal reveal-delay-1">
                 <div class="showcase-img-container" style="background: var(--gray5);">
-                    <a href="https://lsh-1027.github.io/Living-Alone/#ch0" target="_blank" rel="noopener"
+                    <div
                         style="display: block; width: 100%; height: 100%;">
-                        <img src="https://opengraph.githubassets.com/1/lsthc/Living-Alone" alt="Living-Alone Research"
+                        <img src="file/file/Web/images/혼자남겨진 도시, 부산.png" alt="Living-Alone Research"
                             class="showcase-img" style="object-fit: contain;">
-                    </a>
+                    </div>
                 </div>
                 <div class="showcase-content">
                     <div class="showcase-badge">Research</div>
@@ -1757,7 +1757,7 @@
             <div class="sec-label reveal">Section 03</div>
             <div class="h-main reveal reveal-delay-1" style="color:#fff">Project</div>
             <div class="h-sub reveal reveal-delay-2" style="color:#2a2a2a">Timeline</div>
-            <p class="reveal reveal-delay-3">2025.10 — 2026.05 &nbsp;·&nbsp; 총 <strong id="tl-total">38</strong>개 프로젝트
+            <p class="reveal reveal-delay-3">2024.12 — 2026.08 &nbsp;·&nbsp; 총 <strong id="tl-total">38</strong>개 프로젝트
                 배포</p>
             <div id="tl-list"></div>
         </div>
@@ -1849,7 +1849,14 @@
 
         const PROJECTS = [
             {
-                idx: "01", title: "BBAC", subtitle: "Browser Physics Game",
+                idx: "01", title: "FARMERS", subtitle: "GitHub Project",
+                desc: "FARMERS 프로젝트입니다.<br>GitHub에서 프로젝트의 소스 코드와 자세한 내용을 확인할 수 있습니다.",
+                tags: ["Web", "GitHub"],
+                url: "https://github.com/LSH-1027/FARMERS",
+                img: "file/file/Web/images/FARMERS.png"
+            },
+            {
+                idx: "02", title: "BBAC", subtitle: "Browser Physics Game",
                 desc: "<b>BBAC 빡</b>은 직접 기획하고 제작한 창작 2D 게임입니다.<br>파쿠르와 가챠 시스템을 결합해, 스테이지를 클리어하며 다양한 아이템을 모으고 성장하는 재미를 담았습니다.<br><br>순수 바닐라 JavaScript와 HTML5 Canvas API로 개발한 2D 게임.<br>AABB 충돌 감지, 중력 시스템, 벽점프 등의 물리 엔진을 직접 구현했고, Mulberry32 시드 기반 RNG로 절차적 맵을 생성합니다.<br>파티클 시스템, localStorage 저장 기능도 포함되어 있습니다.",
                 tags: ["Vanilla JS", "Canvas API", "Physics Engine"],
                 url: "http://bbac.kro.kr",
@@ -1862,14 +1869,14 @@
                 ]
             },
             {
-                idx: "02", title: "혼자 남겨진 도시, 부산", subtitle: "Living-Alone · Data Analysis Research",
+                idx: "03", title: "혼자 남겨진 도시, 부산", subtitle: "Living-Alone · Data Analysis Research",
                 desc: "부산정보영재교육원 Data AI 과정의 데이터 분석 연구 프로젝트입니다.<br>전국 최초 초고령사회 진입 부산의 독거노인·고독사 문제를 공공데이터로 검증했습니다.<br>React·TypeScript로 라인그래프와 코로플레스 지도 대시보드를 구현했습니다.",
                 tags: ["React", "TypeScript", "D3-geo", "Data Analysis"],
                 url: "https://lsh-1027.github.io/Living-Alone/#ch0",
                 img: "https://opengraph.githubassets.com/1/lsthc/Living-Alone"
             },
             {
-                idx: "03", title: "카카오 AI 루키캠프 2기", subtitle: "인공지능 문제 해결 캠프",
+                idx: "04", title: "카카오 AI 루키캠프 2기", subtitle: "인공지능 문제 해결 캠프",
                 desc: "문제를 질문으로 바꾸고 인공지능으로 해결하는 카카오 AI 루키캠프 작품입니다.<br>팀 프로젝트를 통해 데이터 기반 문제 해결 과정을 경험했습니다.",
                 tags: ["인공지능", "팀 프로젝트", "문제 해결"],
                 url: "https://www.kakaoairookiecamp.com/activity/100",
@@ -1886,18 +1893,19 @@
             { period: "2026.01", items: ["리듬게임맞음.kro.kr", "ai게임.온라인.한국", "ai가만든재밌는게임.kro.kr", "슈퍼브레이크.kro.kr", "변신타읽.kro.kr", "클리커게임.kro.kr", "던전어드벤처.kro.kr", "rpgtrue.kro.kr", "주식오르길기원하며만든주식예측.kro.kr", "꿟.kro.kr"] },
             { period: "2025.12", items: ["lshgame.kro.kr", "lshgravity.kro.kr", "3d게임.kro.kr", "테스트이선호.kro.kr ✕"] },
             { period: "2025.11", items: ["jumpmaping.kro.kr", "gamecookie.kro.kr", "applesnake.kro.kr", "lpfr.kro.kr", "이건모를껄.kro.kr"] },
-            { period: "2025.10", items: ["야구게임이선호.kro.kr", "미로찾기이선호.kro.kr", "공량형게임이선호.kro.kr", "엄창난rpg.kro.kr", "이선호rpg.kro.kr"] }
+            { period: "2025.10", items: ["야구게임이선호.kro.kr", "미로찾기이선호.kro.kr", "공량형게임이선호.kro.kr", "엄창난rpg.kro.kr", "이선호rpg.kro.kr"] },
+            { period: "2024.12", items: [{ name: "FARMERS", url: "https://github.com/LSH-1027/FARMERS" }] }
         ];
 
         const AWARDS = [
             { title: "제3회 AIIRC AI 창작 뮤직비디오 중학생부 금상", org: "AIIRC", date: "2026", type: "상장", image: "file/file/Credentials/images/AI창작 뮤직비디오 중고등부 금상.png" },
             { title: "카카오 AI 루키캠프 2기 수료", org: "카카오 AI 루키캠프", date: "2026.08.11 — 2026.08.14", type: "수료", image: "file/file/Credentials/images/카카오루키캠프2기 수료증.png" },
             { title: "인공지능 데이터분석 청소년부 은상", org: "한국정보기술진흥원", date: "2025.09.25", type: "상장", image: "file/file/Credentials/images/인공지능데이터분석청소년부문_은상.jpg" },
-            { title: "북부수학영재 6학년 수료", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원_수학.jpg" },
+            { title: "부산광역시북부영재교욱원 수학 영역 6학년 수료", org: "부산광역시북부영재교육원", date: "2025.01.31", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원_수학.jpg" },
             { title: "DIAT GOLD MASTER", org: "한국정보통신진흥협회", date: "2024.09.30", type: "자격증", image: "file/file/Credentials/images/DIAT GOLD MASTER 자격증.JPG" },
             { title: "코딩창의개발능력 · 스크래치", org: "창의융합인재교육원", date: "2024.08.21", type: "자격증", image: "file/file/Credentials/images/코딩창의개발능력 합격증서.png" },
             { title: "제57회 과학의 날 상장", org: "과학기술정보통신부", date: "2024.04.22", type: "상장", image: "file/file/Credentials/images/제57회과학의날.jpg" },
-            { title: "북부수학영재 5학년 수료", org: "부산광역시북부영재교육원", date: "2024.01.10", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원수학.jpg" },
+            { title: "부산광역시북부영재교욱원 수학 영역 5학년 수료", org: "부산광역시북부영재교육원", date: "2024.01.10", type: "수료", image: "file/file/Credentials/images/부산광역시북부영재교육원수학.jpg" },
             { title: "부산수학문화관 체험수학캠프", org: "부산광역시교육청창의융합교육원", date: "2023.08.24", type: "수료", image: "file/file/Credentials/images/부산수학문화관_체험수학캠프.jpg" },
             { title: "로봇발명반", org: "부산광역시북부교육지원청교육장", date: "2022.12.14", type: "이수증", image: "file/file/Credentials/images/부산광역시북부교육지원청교육장_로봇발명반.jpg" },
             { title: "대학부설 과학영재교육원 선교육과정", org: "대학부설 과학영재교육원", date: "2022.08.13", type: "이수증", image: "file/file/Credentials/images/대학부설_과학영재교육원장협의회.jpg" },
@@ -1920,6 +1928,19 @@
         const TOTAL = TIMELINE.reduce((a, g) => a + g.items.length, 0);
         document.getElementById('tl-total').textContent = TOTAL;
         document.getElementById('cnt-proj').textContent = TOTAL + '+';
+        const streakStart = new Date(2024, 11, 1);
+        const today = new Date();
+        const streakYears = Math.max(0, today.getFullYear() - streakStart.getFullYear());
+        const streakMonths = Math.max(0, today.getMonth() - streakStart.getMonth());
+        const streakAnchor = new Date(streakStart);
+        streakAnchor.setFullYear(streakStart.getFullYear() + streakYears);
+        streakAnchor.setMonth(streakStart.getMonth() + streakMonths);
+        const streakDays = Math.max(0, Math.floor((today - streakAnchor) / 86400000));
+        const streakParts = [];
+        if (streakYears) streakParts.push(`${streakYears}y`);
+        if (streakMonths) streakParts.push(`${streakMonths}mo`);
+        if (streakDays || !streakParts.length) streakParts.push(`${streakDays}d`);
+        document.getElementById('streak-duration').textContent = streakParts.join(' ');
         document.getElementById('overview-showcase-count').textContent = document.querySelectorAll('.showcase-card').length;
         document.getElementById('overview-projects-count').textContent = PROJECTS.length;
         document.getElementById('overview-timeline-count').textContent = TOTAL;
